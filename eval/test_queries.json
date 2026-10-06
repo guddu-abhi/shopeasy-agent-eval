@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "query": "Is the Blue Ultraboost Running Shoe currently in stock?",
+    "expected_answer": "Yes, the Blue Ultraboost Running Shoe is in stock with 45 units available.",
+    "category": "inventory"
+  },
+  {
+    "id": 2,
+    "query": "Show me all orders for alice@example.com",
+    "expected_answer": "Alice Johnson has 4 orders: Order #73 (delivered, $209.92), Order #1 (delivered, $179.99), Order #2 (shipped, $359.97), and Order #3 (pending, $104.97).",
+    "category": "order_lookup"
+  },
+  {
+    "id": 3,
+    "query": "What's the tracking number for order #2?",
+    "expected_answer": "The tracking number for order #2 is UPS-1002-2026, shipped via UPS. It is currently in transit with estimated delivery on April 18, 2026.",
+    "category": "shipping"
+  },
+  {
+    "id": 4,
+    "query": "I want to return order #14, the bluetooth speaker stopped working after a week.",
+    "expected_answer": "Return request created for order #14. Reason: bluetooth speaker stopped working. Refund amount: $79.99 (pending approval).",
+    "category": "returns"
+  },
+  {
+    "id": 5,
+    "query": "Do you have any fitness equipment available? I want to know what's in stock.",
+    "expected_answer": "We have 15 fitness products in stock including: Yoga Mat Premium (75 units, $49.99), Adjustable Dumbbell Set (15 units, $249.99), Resistance Band Set 5-Pack (140 units, $24.99), Foam Roller (100 units, $29.99), Kettlebell 25lb (60 units, $49.99), Massage Gun (40 units, $129.99), and more.",
+    "category": "inventory"
+  },
+  {
+    "id": 6,
+    "query": "What carrier is shipping order #11 and when will it arrive?",
+    "expected_answer": "Order #11 is being shipped by FedEx (tracking: FDX-4002-2026). The shipment is currently delayed, with estimated delivery on April 20, 2026.",
+    "category": "shipping"
+  },
+  {
+    "id": 7,
+    "query": "Can you look up all of bob@example.com's orders?",
+    "expected_answer": "Bob Smith has 3 orders: Order #4 (delivered, $189.99), Order #5 (shipped, $299.98), and Order #6 (delivered, $89.99).",
+    "category": "order_lookup"
+  },
+  {
+    "id": 8,
+    "query": "How many Portable Phone Chargers do you have left in stock?",
+    "expected_answer": "We have 200 Portable Phone Chargers in stock.",
+    "category": "inventory"
+  },
+  {
+    "id": 9,
+    "query": "What is the status of order #7?",
+    "expected_answer": "Order #7 is shipped. It's being delivered by FedEx (tracking: FDX-3001-2026), currently in transit with estimated delivery on April 16, 2026. The order contains a Merino Wool Sweater and Slim Fit Chino Pants.",
+    "category": "order_status"
+  },
+  {
+    "id": 10,
+    "query": "How much does the Leather Messenger Bag cost?",
+    "expected_answer": "The Leather Messenger Bag costs $189.99. It's a full-grain leather messenger bag with a padded laptop compartment.",
+    "category": "product_info"
+  },
+  {
+    "id": 11,
+    "query": "Tell me about the Yoga Mat Premium",
+    "expected_answer": "The Yoga Mat Premium is a non-slip 6mm thick yoga mat with carrying strap, priced at $49.99 in the Fitness category.",
+    "category": "product_info"
+  },
+  {
+    "id": 12,
+    "query": "Has order #25 been delivered yet?",
+    "expected_answer": "Order #25 has not been delivered yet. It is currently out for delivery via UPS (tracking: UPS-10002-2026), with estimated delivery on April 13, 2026.",
+    "category": "order_status"
+  },
+  {
+    "id": 13,
+    "query": "When was order #8 placed and what was in it?",
+    "expected_answer": "Order #8 was placed on February 14, 2026. It contained UV Protection Sunglasses ($69.99). The order has been delivered.",
+    "category": "order_status"
+  },
+  {
+    "id": 14,
+    "query": "What items are in order #10?",
+    "expected_answer": "Order #10 contains: Ceramic Coffee Mug (qty: 4, $14.99 each) and Bamboo Cutting Board (qty: 1, $24.99). Total: $84.95.",
+    "category": "order_details"
+  },
+  {
+    "id": 15,
+    "query": "How much was order #17?",
+    "expected_answer": "Order #17 totaled $129.97. It contained Organic Cotton T-Shirt (qty: 2, $34.99 each) and Slim Fit Chino Pants (qty: 1, $59.99).",
+    "category": "order_details"
+  },
+  {
+    "id": 16,
+    "query": "Do you sell sunglasses?",
+    "expected_answer": "Yes! We have UV Protection Sunglasses with polarized lenses and lightweight titanium frame, priced at $69.99.",
+    "category": "product_search"
+  },
+  {
+    "id": 17,
+    "query": "What's the price of product #4?",
+    "expected_answer": "Product #4 is the Wireless Noise-Cancelling Headphones, priced at $299.99.",
+    "category": "product_info"
+  },
+  {
+    "id": 18,
+    "query": "I received the wrong hiking boots in order #12, they sent the wrong color. I need to return them.",
+    "expected_answer": "A return has already been processed for order #12 (reason: sole separated after one hike, status: approved, refund: $149.99).",
+    "category": "returns"
+  },
+  {
+    "id": 19,
+    "query": "What's the tracking number for order #74?",
+    "expected_answer": "The tracking number for order #74 is DHL-4004-2026, shipped via DHL. It is currently in transit with estimated delivery on April 22, 2026.",
+    "category": "shipping"
+  },
+  {
+    "id": 20,
+    "query": "Show me all of bianca@example.com's orders.",
+    "expected_answer": "Bianca Torres has 3 orders: Order #65 (delivered, $169.97), Order #66 (delivered, $189.96), and Order #67 (shipped, $139.98).",
+    "category": "order_lookup"
+  },
+  {
+    "id": 21,
+    "query": "Is the Robot Vacuum Cleaner currently in stock? How many do you have?",
+    "expected_answer": "Yes, the Robot Vacuum Cleaner is in stock with 20 units available.",
+    "category": "inventory"
+  },
+  {
+    "id": 22,
+    "query": "Do you have any books about cooking?",
+    "expected_answer": "Yes! We have the Cookbook: Mediterranean Meals ($32.99) with 150 authentic Mediterranean recipes with full-color photographs.",
+    "category": "product_search"
+  },
+  {
+    "id": 23,
+    "query": "I'd like to return order #64, the electric toothbrush stopped holding a charge.",
+    "expected_answer": "A return request already exists for order #64 (reason: electric toothbrush won't hold charge after two weeks, status: requested).",
+    "category": "returns"
+  },
+  {
+    "id": 24,
+    "query": "What outdoor gear do you sell? I'm going camping.",
+    "expected_answer": "We have 13 outdoor products including: Camping Backpack 60L ($129.99), Lightweight Hammock ($49.99), Solar Lantern ($24.99), Insulated Cooler Bag ($39.99), Trekking Poles ($69.99), Portable Camp Stove ($34.99), Packable Rain Jacket ($79.99), Emergency Survival Kit ($44.99), and more.",
+    "category": "product_search"
+  },
+  {
+    "id": 25,
+    "query": "How many items were in order #40 and what did it cost?",
+    "expected_answer": "Order #40 contained 5 items: Camping Backpack 60L ($129.99), Trekking Poles Pair ($69.99), LED Headlamp Rechargeable ($29.99), Emergency Survival Kit ($44.99), and Dry Bag Waterproof 20L ($19.99). Total: $294.95.",
+    "category": "order_details"
+  },
+  {
+    "id": 26,
+    "query": "Is order #58 out for delivery yet?",
+    "expected_answer": "Yes, order #58 is out for delivery via UPS (tracking: UPS-24002-2026), with estimated delivery on April 16, 2026.",
+    "category": "shipping"
+  },
+  {
+    "id": 27,
+    "query": "What skincare products do you have?",
+    "expected_answer": "We have several beauty and skincare products including: Charcoal Face Wash ($14.99), SPF 50 Daily Moisturizer ($24.99), Vitamin C Brightening Serum ($29.99), Rose Water Face Mist ($14.99), Argan Oil Hair Serum ($19.99), and more.",
+    "category": "product_search"
+  },
+  {
+    "id": 28,
+    "query": "How many Massage Guns do you have in stock?",
+    "expected_answer": "We have 40 Massage Gun Percussion units in stock.",
+    "category": "inventory"
+  },
+  {
+    "id": 29,
+    "query": "When will order #41 arrive? Who is shipping it?",
+    "expected_answer": "Order #41 is being shipped by FedEx (tracking: FDX-16002-2026), currently in transit with estimated delivery on April 20, 2026.",
+    "category": "shipping"
+  },
+  {
+    "id": 30,
+    "query": "Can you pull up all orders for diana@example.com?",
+    "expected_answer": "Diana Okafor has 3 orders: Order #70 (delivered, $229.89), Order #71 (delivered, $164.97), and Order #72 (pending, $84.94).",
+    "category": "order_lookup"
+  },
+  {
+    "id": 31,
+    "query": "I want to return order #46, the pull-up bar doesn't fit my door frame.",
+    "expected_answer": "A return request already exists for order #46 (reason: pull-up bar scratched door frame, doesn't fit properly, status: approved, refund: $34.99).",
+    "category": "returns"
+  },
+  {
+    "id": 32,
+    "query": "Do you have the Lightweight Hammock in stock?",
+    "expected_answer": "Yes, the Lightweight Hammock is in stock with 70 units available. It's a parachute nylon hammock priced at $49.99.",
+    "category": "inventory"
+  },
+  {
+    "id": 33,
+    "query": "What's in order #70? That was a big one.",
+    "expected_answer": "Order #70 contains: Ceramic Coffee Mug (qty: 6, $14.99 each), Vacuum Insulated Tumbler (qty: 4, $24.99 each), and Glass Storage Containers 5-Pack (qty: 1, $39.99). Total: $229.89.",
+    "category": "order_details"
+  },
+  {
+    "id": 34,
+    "query": "Show me all orders for sam@example.com",
+    "expected_answer": "Sam Murray has 3 orders: Order #45 (delivered, $204.96), Order #46 (delivered, $214.97), and Order #47 (cancelled, $294.98).",
+    "category": "order_lookup"
+  },
+  {
+    "id": 35,
+    "query": "How much is the Python Programming Cookbook?",
+    "expected_answer": "The Python Programming Cookbook is priced at $44.99. It's a comprehensive Python cookbook with 200+ recipes for intermediate developers.",
+    "category": "product_info"
+  }
+]
