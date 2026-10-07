@@ -84,30 +84,42 @@ def _keywords(text: str) -> list[str]:
     return words
 
 
-def _find_products(conn, product: str, columns: str) -> list:
-    """Find products by ID ("33", "#33", "product 33") or by name. A name returns
-    the exact match if there is one, else the products whose names share the
-    most keywords with it (at most 5)."""
+def _find_products(conn, product: str, columns: str) -> tuple[list, bool]:
+    """Find products by ID ("33", "#33", "product 33") or by name. Returns the
+    rows and whether they match what was asked for. A name matches a product
+    whose name contains every keyword as a whole word. Otherwise, the products
+    sharing the most keywords are returned (at most 5) as close matches only."""
     m = re.fullmatch(r"\s*(?:product\s*)?(?:id\s*)?#?\s*(\d+)\s*", product, re.IGNORECASE)
     if m:
-        return conn.execute(
+        rows = conn.execute(
             f"SELECT {columns} FROM products WHERE id = ?", (int(m.group(1)),)
         ).fetchall()
+        return rows, True
 
     exact = conn.execute(
         f"SELECT {columns} FROM products WHERE lower(name) = ?",
         (product.strip().lower(),),
     ).fetchall()
     if exact:
-        return exact
+        return exact, True
 
-    keywords = _keywords(product)
+    # Whole-word matching, so "air" does not match "Hair Clip Set".
+    keywords = set(_keywords(product))
     rows = conn.execute(f"SELECT {columns} FROM products").fetchall()
-    scored = [(sum(k in r["name"].lower() for k in keywords), r) for r in rows]
+    scored = [(len(keywords & set(_keywords(r["name"]))), r) for r in rows]
     best = max((n for n, _ in scored), default=0)
     if best == 0:
-        return []
-    return [r for n, r in scored if n == best][:5]
+        return [], False
+    return [r for n, r in scored if n == best][:5], best == len(keywords)
+
+
+def _not_exact_header(product: str, matched: bool) -> str:
+    if matched:
+        return ""
+    return (
+        f"No exact match for '{product}'. Closest products (not the same item; "
+        f"tell the customer this before offering them):\n\n"
+    )
 
 
 @tool
@@ -115,13 +127,13 @@ def get_product_details(product: str) -> str:
     """Get a product's name, category, price, and description. Pass the product's
     ID (e.g. "33") or its name (e.g. "Vacuum Insulated Tumbler")."""
     conn = get_connection()
-    rows = _find_products(conn, product, "id, name, category, price, description")
+    rows, matched = _find_products(conn, product, "id, name, category, price, description")
     conn.close()
 
     if not rows:
         return f"No product found matching '{product}'."
 
-    return "\n\n".join(
+    return _not_exact_header(product, matched) + "\n\n".join(
         f"Product #{row['id']}: {row['name']}\n"
         f"Category: {row['category']}\n"
         f"Price: ${row['price']:.2f}\n"
@@ -179,7 +191,7 @@ def list_categories(category: str) -> str:
 
         # Not a category: fall back to products whose name has a keyword,
         # best matches first.
-        hits = [(sum(k in p["name"].lower() for k in keywords), p) for p in products]
+        hits = [(len(set(keywords) & set(_keywords(p["name"]))), p) for p in products]
         by_name = [p for n, p in sorted(hits, key=lambda h: -h[0]) if n > 0]
         if by_name:
             lines = [
@@ -206,13 +218,13 @@ def check_inventory(product: str) -> str:
     """Check whether a product is in stock and how many units are available. Pass
     the product's ID (e.g. "159") or its name (e.g. "Kettlebell 25lb Cast Iron")."""
     conn = get_connection()
-    rows = _find_products(conn, product, "id, name, stock_quantity")
+    rows, matched = _find_products(conn, product, "id, name, stock_quantity")
     conn.close()
 
     if not rows:
         return f"No product found matching '{product}'."
 
-    return "\n\n".join(
+    return _not_exact_header(product, matched) + "\n\n".join(
         f"Product #{row['id']}: {row['name']}\n"
         f"In stock: {'Yes' if row['stock_quantity'] > 0 else 'No'}\n"
         f"Quantity available: {row['stock_quantity']}"
@@ -267,12 +279,21 @@ def initiate_return(order_id: int, reason: str) -> str:
 
     # Check if return already exists
     existing = conn.execute(
-        "SELECT id, status FROM returns WHERE order_id = ?",
+        "SELECT id, status, reason, refund_amount FROM returns WHERE order_id = ?",
         (order_id,),
     ).fetchone()
     if existing:
         conn.close()
-        return f"A return request already exists for order #{order_id} (Return #{existing['id']}, status: {existing['status']})."
+        refund = existing["refund_amount"]
+        refund_str = f"${refund:.2f}" if refund is not None else "not set yet"
+        return (
+            f"A return request already exists for order #{order_id}. "
+            f"No new return was created.\n"
+            f"Return #{existing['id']}\n"
+            f"Reason: {existing['reason']}\n"
+            f"Status: {existing['status']}\n"
+            f"Refund amount: {refund_str}"
+        )
 
     cur = conn.execute(
         "INSERT INTO returns (order_id, reason, status, refund_amount) VALUES (?, ?, 'requested', ?)",

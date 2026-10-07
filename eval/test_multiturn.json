@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "missing email, then given",
+    "turns": ["Can you show me all my orders?", "Sure, it's karen@example.com"],
+    "must_contain": ["$379.98", "$154.96", "$57.98"]
+  },
+  {
+    "id": 2,
+    "name": "return without an order number, then given",
+    "turns": ["I want to return something I bought.", "It's order 19, the item arrived broken."],
+    "must_contain": ["$49.99"],
+    "returns_after": {"19": 1}
+  },
+  {
+    "id": 3,
+    "name": "product follow-up with a pronoun",
+    "turns": ["Is the Fitness Tracker Watch in stock?", "How much does it cost?"],
+    "must_contain": ["$149.99"]
+  },
+  {
+    "id": 4,
+    "name": "order follow-up",
+    "turns": ["What's in order 28?", "Who is shipping it and what's the tracking number?"],
+    "must_contain": ["UPS-11002-2026"]
+  },
+  {
+    "id": 5,
+    "name": "customer corrects the product",
+    "turns": ["What's the price of the Classic White Sneaker?", "Sorry, I meant the Canvas Slip-On Sneakers."],
+    "must_contain": ["$49.99"]
+  },
+  {
+    "id": 6,
+    "name": "no leak between sessions",
+    "other_thread": ["My email is karen@example.com. Show my orders."],
+    "turns": ["Show me my orders please."],
+    "must_contain": ["email"],
+    "must_not_contain": ["$379.98", "$154.96", "$57.98", "karen"]
+  }
+]

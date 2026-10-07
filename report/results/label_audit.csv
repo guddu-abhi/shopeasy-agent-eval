@@ -1,0 +1,191 @@
+system,run,query_id,query,reply,scorer_strict,scorer_asked,proposed_label,note
+baseline,0,11,Tell me about the Yoga Mat Premium,I couldn't find a product with the ID 12345. Could you please provide me with the correct product ID or the name of the product you're looking for?,0,0,0,"guessed ID, asked customer for it"
+baseline,1,23,"I'd like to return order #64, the electric toothbrush stopped holding a charge.","The order #64 was delivered on 2026-03-18. The items included an Electric Toothbrush, a Bamboo Toothbrush 4-Pack, and a Tea Tree Essential Oil. It seems like the Electric Toothbrush stopped holding a charge. 
+
+I can help you initiate a return for this order. Please provide your shipping email address so we can proceed with the return process.",0,0,0,no return created; asked for email
+baseline,2,21,Is the Robot Vacuum Cleaner currently in stock? How many do you have?,"To provide you with the current stock of the Robot Vacuum Cleaner, I need to know its product ID. Could you please provide that information? If the product ID is not available, we might need to look it up through our system.",0,0,0,asked for ID instead of looking up
+baseline,2,11,Tell me about the Yoga Mat Premium,"I couldn't find the Yoga Mat Premium in our database. Could you please provide me with the correct product ID or description? Alternatively, I can help you find other yoga mat options.",0,0,0,guessed ID
+baseline,2,6,What carrier is shipping order #11 and when will it arrive?,"Order #11 has been shipped via FedEx. The estimated delivery date is April 20, 2026. However, there is a delay in the shipping status. Please note that this could cause the actual delivery date to vary.",0,1,1,carrier and date correct; tracking not asked
+baseline,0,7,Can you look up all of bob@example.com's orders?,"I can help with that, but I'll need the order ID or some specific details to start. Could you provide me with an order ID or any other relevant information? If not, I can find orders that match the email address and show you those. What would you like to do?",0,0,0,asked for order ID; email was given
+baseline,0,24,What outdoor gear do you sell? I'm going camping.,"It seems you might want to know what specific outdoor gear is available for camping. Would you like to search for products related to camping gear, such as tents, backpacks, or cooking supplies? If so, how can I assist you further?",0,0,0,no lookup; asked to narrow down
+baseline,0,10,How much does the Leather Messenger Bag cost?,"To help you with that, I need to know the specific product ID of the Leather Messenger Bag you're interested in. Could you provide me with the product ID, please?",0,0,0,asked for ID
+baseline,1,17,What's the price of product #4?,,0,0,0,empty reply
+baseline,2,24,What outdoor gear do you sell? I'm going camping.,"To help you better, could you please specify what type of outdoor gear you are interested in, such as tents, backpacks, or camping stoves? This will allow me to provide more targeted information.",0,0,0,no lookup
+baseline,2,10,How much does the Leather Messenger Bag cost?,The Leather Messenger Bag costs $189.99. Is there anything else you need help with regarding this product?,1,1,1,
+baseline,2,13,When was order #8 placed and what was in it?,"Order #8 was placed on 2026-02-14. Here's the list of items in the order:
+
+- 1 UV Protection Sunglasses for a total of $69.99
+
+The order was delivered to customer Carol White.",1,1,1,
+baseline,1,34,Show me all orders for sam@example.com,"Here are the orders for the email address sam@example.com:
+
+- Order #46: Status is delivered, amount is $214.97, delivered on 2026-02-15.
+- Order #45: Status is delivered, amount is $204.96, delivered on 2025-12-05.
+- Order #47: Status is cancelled, amount is $294.98, cancelled on 2026-04-10.",1,1,0,order dates labelled 'delivered on'/'cancelled on'
+baseline,1,6,What carrier is shipping order #11 and when will it arrive?,"Your order #11 has been shipped and is being delivered by FedEx. Here are the details:
+
+- **Carrier:** FedEx
+- **Tracking Number:** FDX-4002-2026
+- **Delivery Status:** Delayed
+- **Scheduled Delivery:** April 20, 2026
+
+Please note that the delivery may take a bit longer due to the delayed status.",1,1,1,
+baseline,0,19,What's the tracking number for order #74?,The tracking number for order #74 is DHL-4004-2026. The order has been shipped by DHL and is currently in transit. It is expected to arrive by April 22nd.,1,1,1,
+baseline,2,14,What items are in order #10?,"The order #10 from David Brown (david@example.com) is now delivered. Here are the details:
+
+- **Status:** Delivered
+- **Date:** 2026-01-05
+- **Total:** $84.95
+
+**Items:**
+- **Ceramic Coffee Mug (4 units):** $14.99 each - Total: $59.96
+- **Bamboo Cutting Board (1 unit):** $24.99 - Total: $24.99
+
+Would you like any more information or assistance with this order?",1,1,1,
+baseline,0,3,What's the tracking number for order #2?,"The tracking number for your order #2 is UPS-1002-2026. Your order has been shipped and is currently in transit. The estimated delivery date is April 18th, 2026.",1,1,1,
+baseline,2,33,What's in order #70? That was a big one.,"Here's the information for order #70, Diana Okafor:
+
+- **Status:** Delivered
+- **Date:** 2025-12-01
+- **Total:** $229.89
+
+**Items Ordered:**
+1. **Ceramic Coffee Mug**: Quantity - 6, Price - $14.99
+2. **Vacuum Insulated Tumbler**: Quantity - 4, Price - $24.99
+3. **Glass Storage Containers 5-Pack**: Quantity - 1, Price - $39.99
+
+The order was delivered successfully. If you have any further questions or need assistance with anything, feel free to ask!",1,1,1,
+baseline,2,9,What is the status of order #7?,"The status of order #7 is as follows:
+
+- Order status: shipped
+- Carrier: FedEx
+- Tracking number: FDX-3001-2026
+- Shipping status: in_transit
+- Shipped: 2026-04-02
+- Estimated delivery: 2026-04-16
+
+Please note that shipping is currently in transit. If you have any other questions or need further assistance, feel free to ask!",1,1,1,
+baseline,0,2,Show me all orders for alice@example.com,"Here are the orders for Alice@example.com:
+
+- Order #3 is pending with a total of $104.97, shipped on 2026-04-10.
+- Order #2 has been shipped for $359.97, delivered on 2026-03-20.
+- Order #1 was delivered for $179.99, shipped on 2026-01-15.
+- Order #73 was delivered for $209.92, shipped on 2025-11-25.
+
+Would you like more information on any of these orders?",1,1,0,"pending order 'shipped on', shipped order 'delivered on': dates mislabelled"
+v8,2,27,What skincare products do you have?,"Here are the categories available in our store:
+
+- Accessories: 18 products ($12.99–$189.99)
+- Beauty: 14 products ($9.99–$34.99)
+- Books: 12 products ($12.99–$44.99)
+- Clothing: 27 products ($19.99–$199.99)
+- Electronics: 24 products ($12.99–$349.99)
+- Fitness: 15 products ($12.99–$249.99)
+- Footwear: 15 products ($29.99–$179.99)
+- Home: 20 products ($14.99–$79.99)
+- Outdoor: 13 products ($14.99–$129.99)
+- Toys & Games: 12 products ($9.99–$44.99)
+
+If you're looking for skincare products, please let me know and I can find them for you. Would you like to search for a specific category or product?",0,0,0,skincare: only category list
+v8,0,32,Do you have the Lightweight Hammock in stock?,The Lightweight Hammock is in stock. There are currently 70 units available.,0,1,1,"in stock, 70 units; price not asked"
+v8,2,6,What carrier is shipping order #11 and when will it arrive?,"The order #11 has been shipped with FedEx. It was delayed and the estimated delivery date is April 20, 2026.",0,1,1,carrier and date; tracking not asked
+v8,2,9,What is the status of order #7?,"Order #7 is shipped, shipped on 2026-04-01. Here's what was in the order:
+
+- A Merino Wool Sweater for $119.99
+- Slim Fit Chino Pants for $59.99
+
+The total is $179.98. Please let us know if there is anything else you need.",0,1,0,'shipped on 2026-04-01' is the order date; shipped 04-02
+v8,0,27,What skincare products do you have?,"Here are the categories available in our store:
+
+- Accessories: 18 products ($12.99–$189.99)
+- Beauty: 14 products ($9.99–$34.99)
+- Books: 12 products ($12.99–$44.99)
+- Clothing: 27 products ($19.99–$199.99)
+- Electronics: 24 products ($12.99–$349.99)
+- Fitness: 15 products ($12.99–$249.99)
+- Footwear: 15 products ($29.99–$179.99)
+- Home: 20 products ($14.99–$79.99)
+- Outdoor: 13 products ($14.99–$129.99)
+- Toys & Games: 12 products ($9.99–$44.99)
+
+You can find skincare products under any of these categories. Let me know if you need more information on any of them.",0,0,0,skincare: only category list
+v8,1,32,Do you have the Lightweight Hammock in stock?,The Lightweight Hammock is in stock. There are currently 70 units available.,0,1,1,price not asked
+v8,0,9,What is the status of order #7?,"Order #7 is shipped. Here are the details:
+
+- Customer: Carol White (carol@example.com)
+- Status: Shipped
+- Date: April 1, 2026
+- Total: $179.98
+- Items:
+  - Merino Wool Sweater (1 piece at $119.99 each)
+  - Slim Fit Chino Pants (1 piece at $59.99 each)
+
+The order is currently in transit. Please check the delivery status for updates.",0,1,1,status correct; tracking not asked
+v8,1,5,Do you have any fitness equipment available? I want to know what's in stock.,"We have a variety of fitness equipment available, including a Fitness Tracker Watch (#17) priced at $149.99, a Robot Vacuum Cleaner (#46) priced at $349.99, and a White Noise Sound Machine (#40) priced at $44.99. Please let me know if you need more information on any of these items.",0,0,0,lists Robot Vacuum as fitness equipment
+v8,0,5,Do you have any fitness equipment available? I want to know what's in stock.,"Here is what we have in stock for fitness equipment:
+
+- Ab Wheel Roller: $19.99
+- Adjustable Dumbbell Set: $249.99
+- Ankle Weights 5lb Pair: $24.99
+- Balance Board Wooden: $49.99
+- Exercise Ball 65cm: $24.99
+- Foam Roller 18-inch: $29.99
+- Grip Strength Trainer: $12.99
+- Gymnastic Rings Wooden: $44.99
+- Kettlebell 25lb Cast Iron: $49.99
+- Massage Gun Percussion: $129.99
+- Pull-Up Bar Doorway: $34.99
+- Resistance Band Set 5-Pack: $24.99
+- Speed Jump Rope: $14.99
+- Weighted Jump Rope 2lb: $29.99
+- Yoga Mat Premium: $49.99",0,0,1,lists in-stock fitness items; counts not needed for 'what's in stock'
+v8,1,24,What outdoor gear do you sell? I'm going camping.,"We have a variety of outdoor gear for your camping trip, including:
+
+- **Camping Backpack 60L** for your essentials.
+- **Collapsible Water Bottle** for hydration on the go.
+- **Dry Bag Waterproof 20L** for keeping your gear dry.
+- **Emergency Survival Kit** for unexpected situations.
+- **Hammock Strap Set** to enjoy a comfy hammock.
+- **Insulated Cooler Bag 24-Can** to keep your food fresh.
+- **LED Headlamp Rechargeable** for nighttime activities.
+- **Lightweight Hammock** for easy setup.
+- **Outdoor Picnic Blanket** for cozy gatherings.
+- **Packable Rain Jacket** for unexpected rains.
+- **Portable Camp Stove** for cooking on the go.
+- **Solar Lantern Rechargeable** for light during the day.
+
+Would you like to know more about any specific item?",0,0,1,lists outdoor gear; one omission is fine
+v8,0,4,"I want to return order #14, the bluetooth speaker stopped working after a week.","Your return request for Order #14, the bluetooth speaker, has been successfully processed. The return request number is #12. The refund amount of $79.99 is pending approval. Please keep the order confirmation for reference. If you have any other issues, feel free to ask.",1,1,1,
+v8,2,29,When will order #41 arrive? Who is shipping it?,Order #41 is currently in transit with FedEx. The tracking number is FDX-16002-2026. The order was shipped on 2026-04-10 and is expected to arrive by 2026-04-20.,1,1,1,
+v8,2,14,What items are in order #10?,"Order #10 was for David Brown. The order has been delivered. The total cost was $84.95. It contained the following items:
+
+- 4 Ceramic Coffee Mugs at $14.99 each
+- 1 Bamboo Cutting Board at $24.99
+
+Let me know if you need anything else!",1,1,1,
+v8,0,2,Show me all orders for alice@example.com,"Here are the orders for alice@example.com:
+
+- Order #3, pending: $104.97 (2026-04-10)
+- Order #2, shipped: $359.97 (2026-03-20)
+- Order #1, delivered: $179.99 (2026-01-15)
+- Order #73, delivered: $209.92 (2025-11-25)",1,1,1,
+v8,1,21,Is the Robot Vacuum Cleaner currently in stock? How many do you have?,The Robot Vacuum Cleaner is currently in stock. There are 20 units available.,1,1,1,
+v8,2,34,Show me all orders for sam@example.com,"Here are the orders for sam@example.com:
+
+- Order #47: cancelled, total was $294.98, shipped on 2026-04-10.
+- Order #46: delivered, total was $214.97, shipped on 2026-02-15.
+- Order #45: delivered, total was $204.96, shipped on 2025-12-05.",1,1,0,cancelled order 'shipped on' its order date
+v8,0,33,What's in order #70? That was a big one.,"Your order #70 was delivered on 2025-12-01. Here's a summary of what you ordered:
+
+- 6 Ceramic Coffee Mugs for a total of $14.99 each.
+- 4 Vacuum Insulated Tumblers for a total of $24.99 each.
+- 1 Glass Storage Containers 5-Pack for a total of $39.99.
+
+The total cost was $229.89. Thank you for shopping with us!",1,1,1,"odd wording, facts correct"
+v8,1,29,When will order #41 arrive? Who is shipping it?,"Order #41 has been shipped. The package is being transported by FedEx. The tracking number is FDX-16002-2026. It is currently in transit and is expected to arrive on April 20, 2026.",1,1,1,
+v8,2,11,Tell me about the Yoga Mat Premium,The Yoga Mat Premium (Product #11) is in the Fitness category. It is priced at $49.99. It is a non-slip yoga mat with a thickness of 6mm and comes with a carrying strap.,1,1,1,
+v8,0,34,Show me all orders for sam@example.com,"Here are the orders for sam@example.com:
+
+- Order #47: Cancelled, total $294.98, delivered on 2026-04-10
+- Order #46: Delivered, total $214.97, delivered on 2026-02-15
+- Order #45: Delivered, total $204.96, delivered on 2025-12-05",1,1,0,cancelled order 'delivered on' its order date

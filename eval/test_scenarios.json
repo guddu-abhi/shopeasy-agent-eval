@@ -1,0 +1,672 @@
+[
+  {
+    "id": 1,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Strategy Card Game is in stock, and how many are available?",
+    "must_contain": [
+      "100"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 2,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Corduroy Overalls left? how many",
+    "must_contain": [
+      "35"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 3,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Collapsible Water Bottle is in stock, and how many are available?",
+    "must_contain": [
+      "180"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 4,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Fidget Cube Desk Toy left? how many",
+    "must_contain": [
+      "300"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 5,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Canvas Tote is in stock, and how many are available?",
+    "must_contain": [
+      "200"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 6,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Black Leather left? how many",
+    "must_contain": [
+      "35"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 7,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Fleece Zip-Up is in stock, and how many are available?",
+    "must_contain": [
+      "100"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 8,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Electric Scooter is in stock, and how many are available?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ]
+  },
+  {
+    "id": 9,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "casual",
+    "query": "hey do u have any Snowboard Bindings left? how many",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ]
+  },
+  {
+    "id": 10,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Camping Tent 4-Person is in stock, and how many are available?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ]
+  },
+  {
+    "id": 11,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "casual",
+    "query": "hey do u have any Acoustic Guitar left? how many",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ]
+  },
+  {
+    "id": 12,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "What is the price of product #87?",
+    "must_contain": [
+      "$34.99",
+      "Packing Cube Set 4-Piece"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 13,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "how much is item 84",
+    "must_contain": [
+      "$29.99",
+      "Titanium Money Clip"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 14,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "What is the price of product #73?",
+    "must_contain": [
+      "$149.99",
+      "Velvet Blazer"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 15,
+    "intent": "product_info",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "formal",
+    "query": "What is the price of product #999?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ]
+  },
+  {
+    "id": 16,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me what was in order #48 and what it cost in total?",
+    "must_contain": [
+      "$69.97"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 17,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats in order 63 and how much did i pay",
+    "must_contain": [
+      "$169.97"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 18,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me what was in order #52 and what it cost in total?",
+    "must_contain": [
+      "$139.97"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 19,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats in order 35 and how much did i pay",
+    "must_contain": [
+      "$334.97"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 20,
+    "intent": "order_details",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "casual",
+    "query": "whats in order 500 and how much did i pay",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ]
+  },
+  {
+    "id": 21,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #49?",
+    "must_contain": [
+      "FDX-20002-2026",
+      "FedEx"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 22,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "where's my package for order 26?? tracking pls",
+    "must_contain": [
+      "FDX-10003-2026"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 23,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #34?",
+    "must_contain": [
+      "UPS-13003-2026",
+      "UPS"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 24,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "where's my package for order 63?? tracking pls",
+    "must_contain": [
+      "FDX-27001-2026"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 25,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "not_shipped",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #15?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "pending",
+      "yet"
+    ]
+  },
+  {
+    "id": 26,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "not_shipped",
+    "phrasing": "casual",
+    "query": "where's my package for order 51?? tracking pls",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "pending",
+      "yet"
+    ]
+  },
+  {
+    "id": 27,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "formal",
+    "query": "What is the current status of order #29?",
+    "must_contain": [
+      "pending"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 28,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "shipped",
+    "phrasing": "casual",
+    "query": "any update on order 62",
+    "must_contain": [
+      "shipped"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 29,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "delivered",
+    "phrasing": "formal",
+    "query": "What is the current status of order #63?",
+    "must_contain": [
+      "delivered"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 30,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Please list all orders for irene@example.com.",
+    "must_contain": [
+      "$159.98",
+      "$249.99"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 31,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "can u pull up my orders? email is noah@example.com",
+    "must_contain": [
+      "$334.97",
+      "$229.98"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 32,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Please list all orders for henry@example.com.",
+    "must_contain": [
+      "$319.98",
+      "$189.99"
+    ],
+    "must_contain_any": []
+  },
+  {
+    "id": 33,
+    "intent": "order_lookup",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "can you show me all my orders?",
+    "must_contain": [],
+    "must_contain_any": [
+      "email"
+    ]
+  },
+  {
+    "id": 34,
+    "intent": "order_lookup",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "formal",
+    "query": "Please list all orders for nobody@example.com.",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ]
+  },
+  {
+    "id": 35,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "I would like to return order #24 because it arrived damaged.",
+    "must_contain": [
+      "$119.98"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "24": 1
+    }
+  },
+  {
+    "id": 36,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "need to send back order 48, I ordered the wrong size",
+    "must_contain": [
+      "$69.97"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "48": 1
+    }
+  },
+  {
+    "id": 37,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "I would like to return order #37 because it stopped working.",
+    "must_contain": [
+      "$104.94"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "37": 1
+    }
+  },
+  {
+    "id": 38,
+    "intent": "returns",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "formal",
+    "query": "I would like to return order #29 because it doesn't fit.",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "returns_after": {
+      "29": 0
+    }
+  },
+  {
+    "id": 39,
+    "intent": "returns",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "casual",
+    "query": "need to send back order 51, it stopped working",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "returns_after": {
+      "51": 0
+    }
+  },
+  {
+    "id": 40,
+    "intent": "returns",
+    "ref": "id",
+    "state": "return_exists",
+    "phrasing": "formal",
+    "query": "I would like to return order #54 because it arrived damaged.",
+    "must_contain": [
+      "already"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "54": 1
+    }
+  },
+  {
+    "id": 41,
+    "intent": "returns",
+    "ref": "id",
+    "state": "return_exists",
+    "phrasing": "casual",
+    "query": "need to send back order 42, it arrived damaged",
+    "must_contain": [
+      "already"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "42": 1
+    }
+  },
+  {
+    "id": 42,
+    "intent": "out_of_scope",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Which of your headphones has the best customer reviews?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "review",
+      "rating"
+    ]
+  },
+  {
+    "id": 43,
+    "intent": "out_of_scope",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats ur top rated running shoe",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "review",
+      "rating"
+    ]
+  }
+]

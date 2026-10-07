@@ -1,0 +1,51 @@
+name: eval
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # Deterministic tool tests. No LLM, runs in seconds.
+  tool-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pipx install poetry
+      - run: poetry install
+      - run: poetry run python -m unittest discover tests -v
+
+  # LLM smoke test: a small subset of the 35 queries, one per category, run
+  # twice against qwen2.5:3b on CPU. The agent is stochastic, so the job fails
+  # on a pass-rate threshold rather than on any single miss.
+  agent-smoke:
+    if: github.event_name != 'push'
+    needs: tool-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pipx install poetry
+      - run: poetry install
+      - name: Start Ollama and pull the model
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve &
+          sleep 5
+          ollama pull qwen2.5:3b
+      - name: Smoke eval
+        run: |
+          poetry run python -m eval.run_fact_eval --runs 2 --quiet \
+            --ids 2 3 4 8 9 10 14 24 \
+            --min-pass 0.6 --out smoke_results.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-results
+          path: smoke_results.json

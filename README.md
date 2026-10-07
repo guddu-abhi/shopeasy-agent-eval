@@ -65,6 +65,33 @@ poetry run run-eval
 
 This runs 35 fixed evaluation queries and prints expected vs actual answers side by side.
 
+### Scored evaluations
+
+Every runner uses a fresh copy of `store.db` per run, so `initiate_return` never changes the real database.
+
+```bash
+# 35 queries: binary pass/fail on key facts, groundedness, and empty replies
+poetry run python -m eval.run_fact_eval --runs 3 --out results.json
+poetry run python -m eval.run_fact_eval --rescore results.json   # re-score saved runs, no LLM
+poetry run python -m eval.analyze_failures results.json          # failure modes per run
+
+# Same question in several wordings, one benchmark per tool
+poetry run python -m eval.run_tool_eval --runs 4
+
+# Held-out scenarios built from SQL (do not tune on these)
+poetry run python -m eval.build_scenarios
+poetry run python -m eval.run_scenario_eval --runs 2
+
+# Multi-turn sessions, with and without session memory
+poetry run python -m eval.run_multiturn_eval --runs 3
+poetry run python -m eval.run_multiturn_eval --runs 3 --no-memory
+
+# Deterministic tool tests (no LLM)
+poetry run python -m unittest discover tests
+```
+
+See `report/REPORT.md` for the approach and results.
+
 ## Project Structure
 
 ```text
