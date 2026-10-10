@@ -1,32 +1,38 @@
 # ShopEasy Support Agent: Evaluation and Improvement Report
 
-This report covers how I defined performance for the ShopEasy agent, how I measured it, what I changed, and what I would do next. The model stays `qwen2.5:3b` throughout, and the agent is still a LangGraph ReAct agent with tools.
+This report explains how I defined performance for the ShopEasy support agent, why the baseline fell short, what I changed, and what I would do next. The model stays `qwen2.5:3b` throughout, and the agent is still a LangGraph ReAct agent with tools.
 
-The step-by-step history of the prompt and tool changes (V1–V7) is in [`prompt_tuning.md`](prompt_tuning.md). This report is the summary, and that file is the appendix.
+There are two appendices:
+
+- **[`error_analysis.md`](error_analysis.md)** is the full error analysis of the baseline. The data behind it is in [`error_analysis_data/`](error_analysis_data/).
+- **[`prompt_tuning.md`](prompt_tuning.md)** is the step-by-step log of every prompt and tool change (V1–V7).
 
 ---
 
 ## 1. Summary
 
-| | Baseline (main branch) | Final (this branch) |
+| Metric (3B model, same harness for both) | Baseline (`main`) | Final (this branch) |
 |---|---|---|
-| **35 queries, strict pass rate** (3 runs) | 43/105 (41%), CI 32–51% | **89/105 (85%)**, CI 77–90% |
-| **35 queries, asked-for pass rate** (section 6) | 48/105 (46%), CI 37–55% | **98/105 (93%)**, CI 87–97% |
-| **Held-out scenarios** (43 new, 2 runs, never tuned on) | 60/86 (70%), CI 59–78% | **74/86 (86%)**, CI 77–92% |
-| **Multi-turn sessions** (6 sessions, 3 runs) | 10/18 (56%), no memory | **17/18 (94%)**, with memory |
-| Empty replies (35 queries) | 3/105 | 0/105 |
+| **35 original queries: pass^1** (3 runs each) | 43/105 (41%), CI 32–51% | **89/105 (85%)**, CI 77–90% |
+| **35 original queries: pass^3**, all 3 runs pass | 23%, CI 9–37% | **80%**, CI 66–91% |
+| 35 queries, asked-for criteria: pass^1 / pass^3 | 46% / 34% | **93% / 91%** |
+| **Held-out scenarios: pass^1** (43 new, 2 runs, never tuned on) | 60/86 (70%), CI 59–78% | **74/86 (86%)**, CI 77–92% |
+| Held-out scenarios: pass^2 | 63% | **79%** |
+| Multi-turn sessions: pass^1 (6 sessions, 3 runs) | 10/18 (56%) | **17/18 (94%)** |
+| Empty replies (35 queries) | 3/105 | **0/105** |
 
-CI = 95% Wilson interval. A run passes only if **every** check passes: the key facts are in the reply, every number in the reply came from a tool, and the reply is not empty.
-
-- **The gain is large and consistent on the 35 queries.** The baseline passed 11, 14 and 18 of 35 queries in its three runs. The final version passed 30, 30 and 29. The confidence intervals do not overlap.
-- **On unseen cases, the gain is real but smaller: +16 points, not +44.** The 35 queries were used to choose between versions, so their score is optimistic. On the held-out set, ID-based questions barely move (39/46 → 42/46). The gain is in questions that name a product or give an email, which is where the baseline failed (section 5.2).
-- **The prompt and the tools fixed different failures** (section 4).
-  - **The prompt** removed made-up query syntax, skipped returns and empty replies.
-  - **The tools** removed guessed product IDs, which no prompt wording fixed. This 3B model will not chain tools: it almost never reads an ID from one result and passes it to the next tool (2 of 60 runs, `prompt_tuning.md` section 5). So the tools now take what customers actually say, a product name, and return everything the answer needs in one call.
-  - No ablation separates the two effects on the total, so I don't rank them.
-- **The new evals found two release blockers the 35 queries never test** (sections 5.2 and 5.4):
-  - When a customer asks for "my orders" without an email, the agent invents one. In 3 of 12 runs it used `grace@example.com`, the example in the prompt, and **showed a real customer's orders to someone else**.
-  - On questions the data cannot answer ("top-rated running shoe"), the final version invents a ranking (0/4 pass). The baseline declined correctly in 2 of 4 runs, so this is a regression.
+- **Definitions.** pass^k is the chance that k runs of the same question *all* pass, as in τ-bench (section 2).
+  - The pass^1 intervals are 95% Wilson intervals. The pass^k intervals come from a bootstrap over queries.
+  - A run passes only if every check passes: the key facts are in the reply, every number in it came from a tool, and it is not empty.
+- **The gain is large, and it holds up across repeated runs.** The baseline answered only 23% of the original questions correctly in all 3 runs; the final version does so for 80%. For a support agent, where each customer gets one try, this is the figure that matters most.
+- **On unseen cases, the gain is real but smaller: +16 points, not +44.** The 35 queries were used to choose between versions, so their score is optimistic. The held-out set is the honest estimate.
+- **The prompt and the tools fixed different failures.**
+  - **The prompt** removed invented query syntax, skipped returns and empty replies.
+  - **The tools** removed guessed product IDs, which no prompt wording fixed. This 3B model does not chain tools: it read an ID from one result and passed it on in only 2 of 60 runs. So the tools now accept what customers actually say, a product name.
+- **Two release blockers remain, and neither is caught by the original 35 queries:**
+  - **A privacy leak.** Asked for "my orders" without an email, the agent searched the prompt's example email in 3 of 12 runs, and showed a real customer's orders.
+  - **Invented answers to questions the data can't answer,** such as a "top-rated" shoe when the store has no ratings.
+- **One gap in measurement remains.** The automated checks cannot see most false statements (section 4.2). The hand labels found false claims in 41 of 141 baseline traces, but the code's groundedness check flagged 0 of 105 baseline runs.
 
 ---
 
@@ -36,85 +42,174 @@ This is a prototype support agent that reads a store database and can create ret
 
 | Level | Criterion | How it is checked |
 |---|---|---|
-| **Release blocker** | Never states a fact the tools did not return (an invented ID, price, stock count or ranking) | Groundedness check, code-based |
+| **Release blocker** | Never states a fact the tools did not return (an invented ID, price, stock count or ranking) | Groundedness check, code-based; partial (section 4.2) |
 | **Release blocker** | Never answers about the wrong entity (another product's stock) | Key-fact check, plus manual review |
 | **Release blocker** | Write actions are correct: a return is created only when allowed, never twice | DB state check after each run |
-| **Release blocker** | No empty replies; never shows another customer's data | Non-empty check; session-isolation scenario; tool-argument check (to add, section 5.4) |
-| **Core metric** | The reply contains what the customer asked for | Binary pass per query, by intent |
-| **Tolerable for now** | Missing details nobody asked for; wording; shortened product names | Not counted under asked-for criteria |
+| **Release blocker** | No empty replies; never shows another customer's data | Non-empty check; session-isolation scenario |
+| **Core metric** | The reply contains what the customer asked for | Binary pass per query, reported as pass^k |
+| **Tolerable for now** | Missing details nobody asked for; wording; shortened product names | Not counted under the asked-for criteria |
 
-**Why a binary pass per query instead of "facts found":** the earlier metric (114/156 facts) gave one query 11 facts and another one fact, so two inventory queries dominated the total. It also gave partial credit to wrong answers. A binary pass per query is easier to read ("30 of 35 questions answered correctly") and easier to label by hand.
-
----
-
-## 3. How it is measured
-
-| Eval | What it answers | Size | Grader |
-|---|---|---|---|
-| `eval/run_fact_eval.py` | Does the agent answer the 35 original queries? | 35 queries × 3 runs | Code: key facts, groundedness, non-empty |
-| `eval/run_tool_eval.py` | Does it give the same answer to the same question in other words? | 16 intents × 4–5 paraphrases | Code: key facts; tool called |
-| `eval/run_scenario_eval.py` | Does it work on cases it was never tuned on? | 43 scenarios × 2 runs | Code: facts, declines, groundedness, DB state |
-| `eval/run_multiturn_eval.py` | Does it keep context across turns, and only within a session? | 6 sessions × 3 runs | Code: facts in the final reply, no leaks, DB state |
-| `tests/test_tools.py` | Do the tools return the right data? | 13 tests | Unit tests, no LLM |
-| `.github/workflows/eval.yml` | Did a change break something? | Unit tests on every push; 8-query LLM smoke test on PRs | Pass rate ≥ 60%: the final version scores 79% and the baseline 54% on these 8 queries, so the threshold catches a fall back to baseline quality without failing on noise |
-
-**Method notes:**
-- Every run uses a fresh copy of `store.db`, because `initiate_return` writes rows. `store.db` has the same checksum before and after all runs.
-- The agent is stochastic, so every number is a pass rate over repeated runs with a confidence interval. Differences inside the interval are treated as noise.
-- Every grader is code, not an LLM judge. Every failure found so far can be decided by a rule, and code graders are cheap, repeatable and need no calibration. Section 6 shows how the code grader was itself checked against hand labels.
-- All results are saved in `report/results/*.json` with every tool call, its arguments and its output, so the scorer can be changed and re-applied without re-running the agent (`--rescore`).
-
-**The paraphrase eval** (`run_tool_eval.py`) passes 61/64 on the final version, the same as V7, so the name-matching change caused no regression.
-
-**The baseline** is the main branch exactly as it was (original prompt and the original 7 tools), run through the same harness. The earlier "Original" row in `prompt_tuning.md` already had the new `list_categories` tool, so it was not a true baseline.
+- **Why a binary pass per query.** The earlier metric counted facts found (114/156). It gave one query 11 facts and another 1, so two inventory queries dominated the total. It also gave partial credit to wrong answers. A binary pass is easier to read ("30 of 35 questions answered correctly") and easier to label by hand.
+- **Why pass^k is the headline.** The agent is not deterministic: in the baseline, 17 of 47 queries got different results across 3 runs of the same input. A customer gets one answer, so what matters is whether the agent is right *every time*.
+  - pass^k (from τ-bench) measures that directly. It falls as k grows when an agent is flaky.
+  - pass@k (at least one of k runs passes) measures whether the agent *can ever* succeed. It matters little for support, so I report it only to show flakiness: on the baseline, pass@3 is 57% but pass^3 is only 23%.
+  - Both are computed by `eval/pass_k.py` from the saved runs, with no new agent calls.
 
 ---
 
-## 4. Error analysis: why the agent failed
+## 3. Error analysis of the baseline
 
-I read the failed traces by hand and wrote a note for each one (open coding), then grouped the notes into failure modes (axial coding). `eval/analyze_failures.py` applies these codes to any results file. Each failed run gets the code of its **first** failing step, because later errors usually follow from earlier ones.
+I followed the error-analysis process in Hamel Husain and Shreya Shankar's [LLM Evals FAQ](https://hamel.dev/blog/posts/evals-faq/), and ran it before changing anything.
 
-| Failure mode | What happens | Example (baseline) | Baseline | V7 | Final |
-|---|---|---|---|---|---|
-| `guessed_id` | Passes a made-up product ID for a product the customer named | "Is the Yoga Mat Premium…" → `get_product_details(product_id=12345)` | 15 | 0 | 0 |
-| `no_tool_call` | Asks the customer for an ID instead of looking it up | "How much is the Leather Messenger Bag?" → "Could you provide the product ID?" | 14 | 0 | 0 |
-| `invented_syntax` | Makes up query syntax, so the search finds nothing | `search_orders("email:bianca@example.com")` → "no orders found for this email" | 11 | 0 | 0 |
-| `data_not_retrieved` | The needed fact is in no tool output (wrong category, no match, or the tool never returns it) | "skincare" → only the category list; existing return without its refund | 7 | 13 | 6 |
-| `skipped_write_action` | Return requests never call `initiate_return` | "I want to return order #14" → looks up the order, asks for an email | 6 | 0 | 0 |
-| `empty_reply` | No text and no tool call | "What is the status of order #7?" → "" | 3 | 0 | 0 |
-| `dropped_fact` | The tool returned the fact, but the reply left it out | One outdoor product missing from a list | 1 | 1 | 1 |
-| **Failed runs** (asked-for criteria) | | | **57/105** | **14/105** | **7/105** |
+- **Data:** the `main` agent ran on the 35 eval queries plus 12 edge cases I wrote from the DB before any run. That gives 47 queries × 3 runs = **141 traces**, each with every message, tool call and tool result ([`traces.jsonl`](error_analysis_data/traces.jsonl)). Each trace used a fresh copy of `store.db`.
+- **Labels:** I read every trace and recorded the first failure, whether the reply states something false, and a note ([`labels.csv`](error_analysis_data/labels.csv)). Each row of the CSV reads as one story: the question, the tool calls, the reply, the DB truth with the SQL to check it, and the verdict.
+- **Consistency check:** all 117 recorded tool results match a replay of the same calls on `store.db`, and every final answer was re-read against the DB (`error_analysis.md`, section 8).
+
+**Result: 57 of 141 traces pass (40%).** The 84 failures, by first failure, sorted by share:
+
+| Code | Failure mode | Fails | Share | Of which false claims | Example |
+|---|---|---:|---:|---:|---|
+| **A** | Invents an ID instead of searching | 22 | 26% | 5 | `check_inventory(123)` → Cooler Bag → "the hammock is not in stock" (70 units) |
+| **B** | Asks the user instead of looking it up | 15 | 18% | 0 | "Could you provide the product ID?" |
+| **D** | Invents query syntax | 10 | 12% | **9** | `search_orders("email:bianca@…")` → "no orders found" (she has 3) |
+| **F** | Return action not executed | 7 | 8% | 5 | Looks up the order, then asks "shall I proceed?" |
+| **C** | Empty response | 7 | 8% | 0 | `""` |
+| **L** | Calls the order date a delivery date | 6 | 7% | **6** | "delivered on 2026-01-18" (the order date) |
+| **H** | Invents policy or facts | 5 | 6% | **5** | "30-day return policy"; no policy data exists |
+| **E** | Search term misses catalog words, no retry | 4 | 5% | 4 | "skincare" → nothing (the category is Beauty) |
+| **J** | Misreads tool output | 4 | 5% | 4 | Swaps two orders' statuses |
+| **K** | Tool rejects valid input | 3 | 4% | 3 | `Alice@Example.com` → no orders (exact, case-sensitive match) |
+| **I** | Stops mid-chain | 1 | 1% | 0 | Finds product #46, then asks the user to run `check_inventory` |
 
 **What this shows:**
-- **Baseline failures happened before or at the tool call.** The model either did not call a tool or called it with an invented argument. This is why the V2 prompt (one exact example per tool, an exact-name rule) and the V7 tools (accept product names) removed four whole failure modes.
-- **`invented_syntax` explains a gain the earlier report did not explain.** order_lookup went from 20/32 to 32/32 facts under V2. The cause: the baseline model wrote `"email:x@example.com"` instead of the plain email, the search returned nothing, and the agent told a real customer they had no orders. V2's plain-email example fixed it.
-- **The remaining failures are retrieval failures, not reasoning failures.** "Fitness equipment" goes to the Electronics category in 2 of 3 runs, and "skincare" does not map to Beauty. Both are fixable in the tools (section 8).
+
+- **Most failures happen before the model sees any data.** In 61 of 84 failures (73%), the model made no tool call (B, C), sent wrong arguments (A, D), or the search found nothing (E, K). The fix is in tool design and tool-calling, not in answer wording.
+- **Frequency and harm rank differently.**
+  - About half the failures (41 of 84) tell the customer something false, and the customer has no reason to doubt it.
+  - D and L are mid-ranked by frequency, but almost every one is a false statement. A is the most frequent mode, but mostly produces "I couldn't find ID 12345", which is unhelpful but true.
+- **How the user names the entity predicts failure better than the question category does.**
+
+  | How the user names it | Pass rate |
+  |---|---|
+  | Product name | 4/27 (15%) |
+  | Category | 4/18 (22%) |
+  | Email | 7/24 (29%) |
+  | Order ID | 38/63 (60%) |
+
+  The baseline agent works only when it is handed an ID.
+- **These counts describe the test set, not real traffic.** The queries are curated and partly synthetic.
+
+**Problems found in the eval set itself:**
+- **Unreachable facts.** Q18 and Q31 expect the refund of an existing return, and Q18, Q23 and Q31 expect its reason. The original `initiate_return` returned neither, so no agent could pass. Q5 expects stock counts that `search_products` never returns.
+- **Incomplete or inconsistent references.**
+  - Q16's reference lists one pair of sunglasses, but the store sells two (#16 and #78).
+  - Q18 says the boots came in the "wrong color", but the existing return says "sole separated after one hike".
+  - Q13 is labelled `order_status`, but it asks for order details.
+- **The eval wrote to the real database.** `initiate_return` writes to `store.db` (it did so in 1 of 3 baseline runs of Q4), so later runs of Q4 see a different DB. Every harness here now uses a fresh copy of the DB.
+- **Seed dates.** `returns.created_at` is set when the seed script runs, so every return looks as if it was filed months after delivery.
+
+---
+
+## 4. From failures to evals
+
+### 4.1 One check per failure mode
+
+| Failure mode | Check | Type | Where | Validated by |
+|---|---|---|---|---|
+| A: invented ID | Every `*_id` argument must appear in the user message or an earlier tool result | Code | `labels.py` (ID-grounding check) | Flags exactly the 22 A traces among 81 ID calls, with 0 false flags |
+| B, I: no lookup, no chaining | Key facts in the reply | Code | `eval/run_fact_eval.py` | Scorer audit (4.3) |
+| C: empty reply | Reply is not empty | Code | All evals | Trivially exact |
+| D, E, K: retrieval misses | Key facts (order IDs, product names) in the reply; email, partial-name and not-found cases | Code | `run_fact_eval.py`, `run_scenario_eval.py` | Expected values come from SQL |
+| F: return not executed | DB state after the run | Code | `run_scenario_eval.py` | — |
+| Generalisation | 43 held-out scenarios built from 4 dimensions; 16 intents × 4–5 paraphrases; 6 multi-turn sessions | Code | `build_scenarios.py`, `run_tool_eval.py`, `run_multiturn_eval.py` | Never used for tuning |
+| H, J, L: false statements | **No reliable automated check yet** | — | — | See 4.2 |
+
+**Two taxonomies, one mapping.** `eval/analyze_failures.py` applies a code-detectable version of these modes to any results file, so before and after can be compared automatically. A = `guessed_id`, B = `no_tool_call`, C = `empty_reply`, D = `invented_syntax`, E, I and K = `data_not_retrieved`, and F = `skipped_write_action`. H, J and L have no code equivalent.
+
+| Failed runs (35 queries, 3 runs, asked-for criteria) | Baseline | V7 | Final |
+|---|---:|---:|---:|
+| `guessed_id` | 15 | 0 | 0 |
+| `no_tool_call` | 14 | 0 | 0 |
+| `invented_syntax` | 11 | 0 | 0 |
+| `data_not_retrieved` | 7 | 13 | 6 |
+| `skipped_write_action` | 6 | 0 | 0 |
+| `empty_reply` | 3 | 0 | 0 |
+| `dropped_fact` | 1 | 1 | 1 |
+| **Total** | **57/105** | **14/105** | **7/105** |
+
+### 4.2 The gap: false statements
+
+- **The groundedness check flagged 0 of 105 baseline runs.** It checks that every *number* in a reply came from a tool. The baseline's false claims are mostly not numbers: "no orders found", "not in stock", an invented "30-day return policy", or an order date presented as a delivery date.
+- **So this harm is currently measured only by hand.** The hand labels mark 41 of 141 baseline traces as false claims. That rate is not measured for the final version, and section 7 treats this as a limitation.
+- **The plan to close it:**
+  - **A code check for L:** flag "shipped/delivered on <date>" when that date is the order's `created_at`.
+  - **An LLM judge for H and J,** for "states a fact not in the tool output". The 141 hand-labelled traces are a ready-made validation set: the `false_claim` column is the gold label. Report the judge's TPR and TNR on them before trusting it on new runs.
+  - **The judge may use a different, larger model.** The constraint is on the agent's model, not the grader's.
+
+### 4.3 Checking the scorer
+
+A code grader can be wrong too, so I checked it against hand labels. I sampled 40 runs (20 baseline, 20 final, mixing scorer passes and fails) and labelled each reply as a support lead would (`report/results/label_audit.csv`).
+
+| Scorer | Failures caught (TPR) | Good replies passed (TNR) | Agreement |
+|---|---|---|---|
+| Strict key facts (from `expected_answer`) | 13/17 (76%) | 16/23 (70%) | 72% |
+| **Asked-for key facts** | 12/17 (71%) | **21/23 (91%)** | **82%** |
+
+- **The strict scorer fails correct answers.** The expected answers include details nobody asked for, such as a tracking number for "what carrier… and when will it arrive?". The asked-for view checks only what the question asks, for 11 queries, with the reason recorded next to each one. Both views are reported.
+- **Both scorers miss mislabelled dates** (4 of their 5 missed failures). This matches the gap in 4.2.
+- **Two independent baseline samples agree.** The hand-labelled traces (41/105 on the 35 queries) and the code-graded baseline runs (43/105) are different runs scored by different graders. Their pass rates differ by 2 points.
 
 ---
 
 ## 5. What changed and why
 
-### 5.1 Changes (details in `prompt_tuning.md`)
+Each change followed the same loop: a hypothesis from a failure mode, one change, then a measurement on the evals. The change was kept only if it helped. The full log is in `prompt_tuning.md`.
 
 | Change | Failure mode it targets | Evidence |
 |---|---|---|
-| Prompt: one question → tool-call example per tool, exact tool names, "never guess an ID" (V2) | `no_tool_call`, `invented_syntax`, `empty_reply` | 76 → 89 facts; empty replies traced to invented tool names (`prompt_tuning.md` Step 6) |
-| New `list_categories` tool with keyword matching and fallbacks (V4–V6) | `data_not_retrieved` on "what do you sell?" questions | Book questions 0/12 → 12/12 (section 4.4) |
-| `get_product_details` and `check_inventory` accept a name, not just an ID (V7) | `guessed_id` | Prompting to chain worked 2/60 times; name-accepting tools 48/48 (section 5) |
-| `initiate_return` reports an existing return's reason and refund (this round) | `data_not_retrieved` on returns | The tool never returned the refund the expected answer needs. Returns 6/12 → 12/12 |
-| Product names match whole words and flag near-misses as "No exact match" (this round) | Wrong-entity answers caused by the V7 name matching | "Nike Air Max" matched "Hair Clip Set"; "Kettlebell 50lb" returned the 25lb one as if it were the same. Unit tests cover both |
-| Session memory, opt-in per thread (this round) | Follow-up turns lose context (the prompt says "ask for the email", but the next turn forgot the question) | Section 5.3 |
+| **Prompt:** one example per tool showing a question and its exact tool call, the exact tool names, and "never guess an ID" (V2) | B, C, D | Facts found: 76 → 89 of 156. Empty replies were traced to tool names the model invented. |
+| **New `list_categories` tool,** with keyword matching and fallbacks (V4–V6) | E, plus "what do you sell?" questions | Book questions: 0/12 → 12/12 |
+| **`get_product_details` and `check_inventory` accept a name,** not just an ID (V7) | A, I | Prompting the model to chain calls worked in 2 of 60 runs; name-accepting tools passed 48/48 |
+| **`initiate_return` reports an existing return's reason and refund** | F, and the unreachable facts | Returns: 6/12 → 12/12 |
+| **Product names match whole words;** near-misses are flagged as "No exact match" | Wrong-entity answers introduced by V7 | "Nike Air Max" had matched "Hair Clip Set". Unit tests cover this. |
+| **Session memory,** opt-in per thread | Follow-up turns lost context | Section 6.3 |
 
-**Why the near-miss label matters:** V7 fixed guessed IDs by letting tools resolve names. However, fuzzy resolution moved the same risk into the tool: for a product we don't sell, the tool returned a different product, and the agent presented it as the one asked about. The tool now says "No exact match for 'X'. Closest products (not the same item…)".
+**What did not work, and what it taught me:**
 
-### 5.2 Held-out scenarios
+- **A concise rewrite of the prompt (Step 6) caused empty replies.** The examples were written in plain text and showed only one tool. The model then invented tool names (`get_order_status`), and Ollama dropped those calls. I found this by sampling the raw model output, and fixed it by stating the exact tool names.
+- **Spelling out multi-step sequences in the prompt (V3) did not help.** The score did not improve (85–86 vs 89 facts), and empty replies rose to 5–6 of 70. I reverted it. Under every prompt I tried, the model made one tool call and answered from it.
+- **Lesson: fit the tools to the model.** A 3B model will not reliably chain dependent calls. Rather than keep rewording the prompt, I made each answer need only one call.
+- **New risk created by the tool fix.** Fuzzy name matching moved the wrong-entity risk into the tool: for a product the store doesn't sell, the tool returned a similar one. The tool now says "No exact match for 'X'. Closest products (not the same item…)".
 
-The 35 queries and the paraphrase set were used to choose between versions, so their scores are optimistic. I built a separate set to check that the gains carry over.
+---
 
-- **How it was built** (`eval/build_scenarios.py`): each scenario is a tuple of four dimensions, chosen from the failure modes above. The dimensions are the intent, how the entity is named (ID, exact name, partial name, email, none, nonexistent), the data state (normal, pending, return exists, not sold, not found), and phrasing (formal or casual). Expected values come from SQL, so there are no hand-written answers to get wrong. No entity overlaps with the other eval sets or the prompt's examples.
-- **It was run once on the final version and once on the baseline.** Nothing was tuned on it.
+## 6. Results
 
-Results after correcting two over-strict checks in my generator, applied to both systems by re-scoring the saved runs. The partial-name check now looks for the stock count, not the full product name. The casual "tracking pls" question no longer requires the carrier. Before the correction: baseline 62/86 (72%), final 68/86 (79%).
+### 6.1 Reliability across runs (pass^k)
+
+| Eval | Version | pass^1 | pass^2 | pass^3 | pass@3 |
+|---|---|---:|---:|---:|---:|
+| 35 queries, strict | Baseline | 41% | 30% | 23% | 57% |
+| | Final | **85%** | **82%** | **80%** | 89% |
+| 35 queries, asked-for | Baseline | 46% | 38% | 34% | 57% |
+| | Final | **93%** | **92%** | **91%** | 94% |
+| Held-out scenarios (2 runs) | Baseline | 70% | 63% | — | — |
+| | Final | **86%** | **79%** | — | — |
+| Multi-turn sessions | No memory | 56% | 50% | 50% | 67% |
+| | Memory | **94%** | 89% | 83% | 100% |
+
+- **The final version is both better and steadier.** Its pass^k drops by only 5 points from k=1 to k=3, compared with 18 for the baseline.
+- **The held-out set drops more** (86% → 79% from k=1 to k=2). Some held-out questions are answered correctly only some of the time, so this is where reliability work should go next.
+
+### 6.2 Held-out scenarios by dimension
+
+The held-out scenarios are built from four dimensions (`eval/build_scenarios.py`):
+- the intent;
+- how the entity is named (ID, exact or partial name, email, none, or one that doesn't exist);
+- the data state (normal, pending, return exists, not sold, not found);
+- the phrasing (formal or casual).
+
+Expected values come from SQL, and no entity overlaps with the tuning sets or the prompt's examples. Two checks in my generator were too strict, so both systems were re-scored from their saved runs after the fix. Before that fix, the baseline scored 62/86 and the final version 68/86.
 
 | Dimension | Baseline | Final |
 |---|---|---|
@@ -128,22 +223,23 @@ Results after correcting two over-strict checks in my generator, applied to both
 | returns | 9/14 | 11/14 |
 | shipping | 12/12 | 11/12 |
 | out_of_scope ("best reviewed…") | 2/4 | **0/4** |
-| casual / formal phrasing | 26/38 / 34/48 | 32/38 / 42/48 |
 
-**How to read this:** the final version wins where the baseline had to turn a name or an email into a tool call. It is no better on ID-based questions, which the baseline already handled, and it is worse on questions it should decline.
+The final version wins where the baseline had to turn a name or an email into a tool call, which matches the error analysis. It is no better on ID-based questions, which already worked. It is worse on questions it should decline.
 
-**New failures it found** (read by hand):
-- **Invented rankings, 4/4.** "whats ur top rated running shoe" → "One of the top-rated running shoes is the Blue Ultraboost…". The data has no ratings. The baseline said "I don't have enough information to determine which… has the best reviews" in 2 of 4 runs, so this is a regression. A likely cause is the final prompt's "get facts only by calling a tool" rule with no rule for what to do when no tool can answer.
-- **Casual stock questions go to the wrong tool.** "hey do u have any Corduroy Overalls left? how many" → `list_categories`, which has no stock counts. One reply then invented "1 unit available" (caught by the groundedness check).
-- **A pending order's return** was handled with a lookup only, and the reply never said the order cannot be returned yet.
-- **Scorer false fails, 6 runs**, corrected above. My generated checks were too strict in two places: the full product name for partial-name questions ("The Canvas Tote is in stock, 200 units" is correct), and the carrier for "tracking pls" questions.
-- **A scorer false pass.** "can you show me all my orders?" passes because the reply asks for an email. However, it asks only after searching for an invented one (section 5.4).
+### 6.3 Robustness: personas and conversations
 
-**Disclosure:** while building the name-matching fix, I viewed the tool output for three partial names that are also in this set ("Black Leather", "Canvas Tote", "Fleece Zip-Up"), as a check after the fix. Nothing was changed because of them. The not-sold names I probed during the fix were swapped for new ones before the run.
+The 35 queries are all single, well-formed questions. I tested two kinds of customer behaviour they don't cover.
 
-### 5.3 Session memory
+**Phrasing persona: formal vs casual** (held-out scenarios, e.g. "Could you tell me whether the X is in stock?" vs "hey do u have any X left? how many").
 
-`Agent.run` used to start a new conversation on every call, so a two-turn exchange ("show my orders" → "which email?" → "karen@example.com") lost the question. The graph now takes a LangGraph `MemorySaver` checkpointer, and runs that share a `thread_id` form one conversation. It is opt-in (`Agent(memory=True)`). The chat CLI uses one thread per session, and the single-turn evals are unchanged.
+| Phrasing | Baseline pass^1 | Final pass^1 | Final pass^2 |
+|---|---|---|---|
+| Formal (24 scenarios) | 34/48 (71%) | **42/48 (88%)** | 79% |
+| Casual (19 scenarios) | 26/38 (68%) | **32/38 (84%)** | 79% |
+
+- **Both personas improve by about 16 points, and the gap between them stays small.** The remaining casual failures come from tool choice, not tone. For example, "how many left?" goes to `list_categories`, which has no stock counts. So more tone-based personas would add little until tool selection is fixed.
+
+**Conversation persona: the customer who answers over several turns** (6 sessions × 3 runs).
 
 | Session | No memory | Memory |
 |---|---|---|
@@ -155,80 +251,78 @@ Results after correcting two over-strict checks in my generator, applied to both
 | No leak between two customers' sessions | 3/3 | 2/3 |
 | **All** | 10/18 (56%) | **17/18 (94%)** |
 
-- **The sessions that need context go from 1/9 to 9/9.** Without memory, "how much does it cost?" gets "which product?", and "who is shipping it?" gets an answer about a **different order the model made up** (#22 or #44, both IDs from the prompt's examples).
-- **Two sessions do not test memory.** "Sure, it's karen@example.com" and "Sorry, I meant the Canvas Slip-On Sneakers" can be answered without the first turn, so they pass either way. Future follow-ups should depend on the earlier turn.
-- **The one failure with memory is not a memory leak.** The other customer's data did not cross threads. Instead, the new session's "show me my orders" made the agent invent an email (section 5.4).
+- **The sessions that need context go from 1 of 9 runs to 9 of 9.** `Agent.run` used to start a new conversation on every call. It now takes a LangGraph `MemorySaver`, opt-in per `thread_id`.
+- **Memory does not fix tool chaining.** Chaining fails within a single turn.
+- **The one failure with memory is not a leak between sessions.** It is the privacy blocker in 6.4.
 
-Memory does **not** fix tool chaining. Chaining fails *within* one turn, where the ReAct loop already has every message. Memory only carries context *across* turns.
+### 6.4 Regressions and release blockers
 
-### 5.4 Release blocker: prompt examples used as defaults
+- **Prompt examples are used as defaults, which leaks private data.** When a customer asked for "my orders" without an email (12 runs), the agent:
+  - asked for the email first in 0 runs;
+  - searched an invented placeholder email in 9 runs;
+  - searched **`grace@example.com`**, the prompt's example, and listed Grace Kim's orders, in **3 runs**.
 
-The multi-turn isolation check found this. I then reproduced it 12 times with "Show me my orders please." and similar questions, recording the tool calls.
-
-| What the agent did | Runs |
-|---|---|
-| Asked the customer for their email first | **0/12** |
-| Searched an invented placeholder (`your@example.com`, `user@example.com`, …), then asked | 9/12 |
-| Searched **`grace@example.com`**, the email in the prompt's example, and **listed Grace Kim's orders** | **3/12** |
-
-- **This is a privacy failure.** One customer sees another customer's orders, names and totals. The prompt already says "If they did not give one, ask for it", but the model ignores it.
-- **It is a pattern, not a one-off.** Without memory, a follow-up about "it" was answered with order #22 or #44, which are also the prompt's example IDs. When the customer leaves out an entity, the 3B model fills it in from the prompt's examples.
-- **No eval caught it before.** The 35 queries always give the email, and the fact scorer only checks what the reply contains. Catching it needs a check on tool **arguments**: the email passed to `search_orders` must appear in the customer's messages.
+  Without memory, follow-ups about "it" were also answered with the prompt's example order IDs (#22, #44). The fact scorer cannot catch this, because the reply looks fine; catching it needs a check on the tool **arguments**.
+- **Invented rankings: 0/4 on questions the data can't answer.** "whats ur top rated running shoe" → "One of the top-rated running shoes is the Blue Ultraboost…". The baseline declined correctly in 2 of 4 runs, so this is a regression. A likely cause is the prompt's "get facts only by calling a tool" rule, which says nothing about what to do when no tool can answer.
 
 ---
 
-## 6. Checking the scorer
+## 7. Limitations
 
-A code grader can be wrong too, so I checked it against hand labels. I sampled 40 runs (20 baseline, 20 final, mixing scorer passes and fails), read each reply, and labelled it pass or fail as a support lead would. The labels and notes are in `report/results/label_audit.csv`.
-
-| Scorer | Failures caught (TPR) | Good replies passed (TNR) | Agreement |
-|---|---|---|---|
-| Strict key facts (from `expected_answer`) | 13/17 (76%) | 16/23 (70%) | 72% |
-| **Asked-for key facts** | 12/17 (71%) | **21/23 (91%)** | **82%** |
-
-**What the audit found:**
-- **The strict scorer fails correct answers.** The expected answers include details the customer did not ask for, such as a tracking number for "what carrier… and when will it arrive?" or prices for "do you sell sunglasses?". So I added an **asked-for** view (`ASKED_FOR` in `run_fact_eval.py`). For 11 queries, it checks only what the question asks, with the reason noted beside each one. Both views are reported, so nothing is hidden.
-- **Both scorers miss mislabelled dates**, the most common failure they miss (4 of the 5 missed failures). `search_orders` prints the order date in brackets with no label, so the agent writes "Order #47: Cancelled… delivered on 2026-04-10". That is the order date, and the order was never delivered. No fact check can catch this. It is why order_lookup's 15/15 overstates quality, and it is next step 2.
-- **Limits:** one reviewer (the labels are mine and should be confirmed by the domain expert), 40 samples, and the same sample was used to design the asked-for view. A fresh sample is needed to confirm the 91%.
-
----
-
-## 7. Problems found in the dataset
-
-- **Unreachable facts.** Queries 18 and 31 expect the refund of an existing return, but the original `initiate_return` never returned it. No agent could pass them. They now pass, after the tool fix.
-- **A contradiction.** Query 18 says the boots came in the "wrong color", but the existing return #2 says "sole separated after one hike". The expected answer reports the existing return, which is right, but the query and the data disagree.
-- **A mislabelled category.** Query 13 ("when was order #8 placed and what was in it?") is labelled `order_status`, but it is an order-details question.
-- **Seed dates.** `customers.created_at` and `returns.created_at` are set when the seed script runs, so every return is filed months after delivery (`prompt_tuning.md` section 2).
+- **One labeller.** I labelled every trace and the scorer audit myself. A domain expert should review `labels.csv`, especially the 11 `borderline` passes, before anyone builds evaluators on these labels.
+- **Small samples.** There are 35 + 43 queries with 2–3 runs each, so the intervals are wide: pass^3 on the 35 queries spans 66–91%. Differences inside an interval are treated as noise.
+- **Selection bias.** I chose between versions using the 35 queries and the paraphrase set, so their scores are optimistic. Only the held-out set and the multi-turn sessions were never used for tuning.
+- **Unmeasured harm.** The false-claim rate of the final version is not measured (section 4.2). Its 0 ungrounded *numbers* does not mean it makes no false statements.
+- **No ablation.** The prompt and tool changes were not tested separately on the final total, so I don't rank their contributions.
 
 ---
 
 ## 8. Next steps, in priority order
 
-1. **Never show one customer another customer's data (section 5.4).**
-   - Replace the prompt's example entities with ones that do not exist in the store (an email and order IDs with no rows).
-   - Add a deterministic guardrail in the graph: before `search_orders` runs, check that the email appears in the customer's messages, and otherwise ask for it. This is a fast, explainable code check of the kind that belongs in the request path, not an LLM judge.
-   - Add the argument check to the evals, and add "my orders" and "my last order" cases with no entity given.
-   - This is first because it is the only failure that harms a third party, and the prompt rule alone does not prevent it.
-2. **Stop invented claims on questions the data cannot answer.** Out-of-scope questions fell from 2/4 to 0/4, and inventing a "top-rated" product misleads customers. Add a prompt rule ("we have no ratings or reviews; say so"), add 10–15 held-out cases (ratings, delivery promises, discounts), and gate on them.
-3. **Label dates in tool outputs, and add a check for date labels.** `search_orders` and `lookup_order` print bare dates, and the agent calls them shipping or delivery dates. The fix is to print "ordered 2026-04-10" and to show `shipped_at` and `delivered` only where they exist. Then add a code check that flags "shipped/delivered on <date>" when the date is the order date. This matters because the fact scorer cannot see this error, so a 100% order_lookup score hides it.
-4. **Fix catalog retrieval for stock and category questions.** These cause the remaining failures on both sets: "fitness equipment" → Electronics, "skincare" with no synonym, casual "how many left" questions sent to `list_categories`, and category listings without stock counts. Options: include stock counts in `list_categories`, add a small synonym map, or split it into `list_categories()` and `list_products(category)`, so that neither has an optional argument. Measure each option on the tool eval and held-out set separately.
-5. **Grow the eval set from real use, and keep looking at traces.** Once there is traffic, sample real conversations every week, repeat the open and axial coding, and add each new failure to the CI set. The synthetic scenarios are templates, so real phrasing will find failures they miss. Add an LLM judge only for criteria that code cannot check (such as a helpful decline), and only after 100+ labelled examples to measure its agreement.
+1. **Never show one customer another customer's data (6.4).**
+   - Replace the prompt's example entities with ones that do not exist in the store.
+   - Add a deterministic guardrail in the graph: before `search_orders` runs, check that the email appears in the customer's messages, and otherwise ask for it.
+   - Add the same argument check to the evals, with "my orders" and "my last order" cases that give no entity.
+   - This comes first because it is the only failure that harms a third party, and the prompt rule alone does not prevent it.
+2. **Measure false statements automatically (4.2).**
+   - Add the order-date check for L.
+   - Build one LLM judge for "states a fact not in the tool output", and validate it on the 141 hand-labelled traces (TPR and TNR on the `false_claim` column) before using it.
+   - Until this exists, the most harmful failure mode is visible only by hand.
+3. **Stop invented answers on questions the data cannot answer.**
+   - Add a prompt rule: "we have no ratings, reviews or policies; say so".
+   - Add 10–15 held-out cases (ratings, delivery promises, discounts), and gate releases on them.
+4. **Label dates in the tool outputs.** `search_orders` and `lookup_order` print bare dates, which the agent reads as delivery dates. Print "ordered 2026-04-10", and show `shipped_at` and the delivery date only where they exist.
+5. **Fix catalog retrieval for stock and category questions.** This causes the remaining failures: "fitness equipment" → Electronics, "skincare" with no synonym, and casual "how many left" questions sent to `list_categories`.
+   - Either include stock counts in `list_categories`, or split it into `list_categories()` and `list_products(category)`.
+   - Measure each option on the tool eval and the held-out set separately.
 
 **Deliberately not prioritized:**
-- **A separate order-lookup agent (multi-agent routing).** Order intents already pass 10/10 on the held-out set and 15/15 on the 35 queries. A router would add a new failure point (wrong routing) without a failure that needs it. I would test it only as a hypothesis, "a router that narrows the toolset improves tool choice on this 3B model", if step 3 does not fix tool selection.
-- **Tone-based personas.** Phrasing is already a scenario dimension (casual 28/38 vs formal 40/48), and the casual gap comes from tool choice, not tone. More personas are worth adding only if trace review shows tone changes the outcome.
+- **Multi-agent routing.** Order intents already pass 10/10 on the held-out set. A router would add a new failure point without a failure that needs it.
+- **More tone-based personas.** Casual and formal phrasing improved equally (6.3), and the casual failures come from tool choice. More personas are worth adding only if trace review shows that tone changes the outcome.
 
 ---
 
 ## Appendix: reproducing the results
 
 ```bash
+# Unit tests for the tools
 poetry run python -m unittest discover tests
+
+# Evals (each run uses a fresh copy of store.db)
 poetry run python -m eval.run_fact_eval --runs 3 --out report/results/fact_eval_v8.json
-poetry run python -m eval.analyze_failures report/results/fact_eval_baseline.json report/results/fact_eval_v8.json
 poetry run python -m eval.run_scenario_eval --runs 2 --out report/results/scenarios_v8.json
 poetry run python -m eval.run_multiturn_eval --runs 3 --out report/results/multiturn_memory.json
 poetry run python -m eval.run_multiturn_eval --runs 3 --no-memory --out report/results/multiturn_no_memory.json
+
+# Analysis of saved runs (no agent calls)
+poetry run python -m eval.analyze_failures report/results/fact_eval_baseline.json report/results/fact_eval_v8.json
+python3 -m eval.pass_k report/results/fact_eval_baseline.json report/results/fact_eval_v8.json
+python3 -m eval.pass_k --key pass_asked report/results/fact_eval_baseline.json report/results/fact_eval_v8.json
+python3 -m eval.pass_k --by phrasing report/results/scenarios_baseline.json report/results/scenarios_v8.json
+python3 -m eval.pass_k report/results/multiturn_no_memory.json report/results/multiturn_memory.json
+
+# Baseline error analysis: counts, ID-grounding check and labels.csv
+python3 report/error_analysis_data/labels.py report/error_analysis_data/traces.jsonl report/error_analysis_data/labels.csv
 ```
 
-The baseline was run by extracting the main branch (`git archive 029ffaf src`) into a separate folder, adding the same `eval/` files, and running the same commands there.
+The baseline evals were run by extracting the `main` branch (`git archive 029ffaf src`) into a separate folder, adding the same `eval/` files, and running the same commands there. The baseline traces for the error analysis were collected with `report/error_analysis_data/collect_traces.py` on `main`.
