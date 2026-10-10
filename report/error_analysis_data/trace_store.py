@@ -14,6 +14,9 @@ class ToolCall:
     name: str
     args: dict
 
+    def __str__(self) -> str:
+        return f"{self.name}(" + ", ".join(f"{k}={v!r}" for k, v in self.args.items()) + ")"
+
 
 @dataclass(frozen=True)
 class Trace:

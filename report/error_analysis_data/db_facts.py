@@ -1,4 +1,4 @@
-"""Ground-truth DB records for each query, for the "Factual DB records" and "DB query" columns of labels.csv.
+"""Ground-truth DB records for each query, for the db_truth and db_query columns of labels.csv.
 
 labels.py adds these columns when it writes labels.csv. To print the facts for some queries:
     python db_facts.py [store.db] [id ...]
@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 DEFAULT_DB = Path(__file__).resolve().parents[2] / "store.db"
-COLUMNS = ("Factual DB records", "DB query")
+COLUMNS = ("db_truth", "db_query")
 
 ORDERS_BY_EMAIL = ("SELECT c.id AS customer_id, c.name, o.id AS order_id, o.status, o.created_at, o.total "
                    "FROM orders o JOIN customers c ON o.customer_id = c.id "

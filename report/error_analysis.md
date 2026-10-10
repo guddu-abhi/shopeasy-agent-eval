@@ -31,7 +31,7 @@ This report applies the error-analysis process from Hamel Husain and Shreya Shan
 
 **Caveats**
 
-- **I, an AI assistant, did the open coding.** The guide recommends a domain expert as the "definitive voice on quality standards" (the benevolent dictator). It also says to annotate "at least 30 traces yourself before reviewing suggestions from an agent". **The labels in `error_analysis_data/labels.csv` should be reviewed by the project owner** before anyone builds evaluators on them. The 11 close calls that I still passed are marked `BORDERLINE` in the `note` column.
+- **I, an AI assistant, did the open coding.** The guide recommends a domain expert as the "definitive voice on quality standards" (the benevolent dictator). It also says to annotate "at least 30 traces yourself before reviewing suggestions from an agent". **The labels in `error_analysis_data/labels.csv` should be reviewed by the project owner** before anyone builds evaluators on them. The 11 close calls that I still passed have `outcome` set to `borderline`.
 - **Counts describe this test set, not real traffic.** The queries are curated and partly synthetic, so a failure mode's share here does not show how often real customers would hit it.
 
 ## 3. Failure taxonomy
@@ -187,9 +187,14 @@ All evidence is in `report/error_analysis_data/`.
 - **`collect_traces.py`** reruns the 141 traces against the agent, with a fresh DB copy for each trace. Run it from the repo root with `poetry run python report/error_analysis_data/collect_traces.py "$PWD" traces.jsonl 3`.
 - **`traces.jsonl`** holds the raw traces used here: every message, tool call, tool result and latency.
 - **`label_data.py`** holds the hand labels (first-failure code, secondary code, false-claim flag and note for every trace).
-- **`labels.py`** joins the labels with the traces, recomputes the counts in this report and runs the ID-grounding check. Run it with `python3 report/error_analysis_data/labels.py report/error_analysis_data/traces.jsonl`. Add `report/error_analysis_data/labels.csv` as a second argument to rewrite the CSV. A few figures, such as which tools ran in the F traces, come from the `tools` column of `labels.csv`.
+- **`labels.py`** joins the labels with the traces, recomputes the counts in this report and runs the ID-grounding check. Run it with `python3 report/error_analysis_data/labels.py report/error_analysis_data/traces.jsonl`. Add `report/error_analysis_data/labels.csv` as a second argument to rewrite the CSV. A few figures, such as which tools ran in the F traces, come from the `tool_calls` column of `labels.csv`.
 - **Run numbering:** runs are numbered 0–2 throughout, matching the `rep` column.
-- **`labels.csv`** is the flat label table, intended for owner review. Its last two columns give the ground truth for each query: `Factual DB records` summarises the matching rows in `store.db`, and `DB query` is the SQL that returns them.
+- **`labels.csv`** is the flat label table, intended for owner review. Each row is one trace, and the columns read left to right:
+  - **The question:** `id`, `rep`, `category`, `ref` (how the user names the entity) and `query`.
+  - **What the agent did:** `tool_calls`, with arguments, and `answer`, its final reply.
+  - **The truth:** `db_truth` summarises the matching rows in `store.db`.
+  - **The verdict:** `outcome` (`pass`, `borderline` or `fail`), `failure` (the first-failure code, plus a secondary code after `+`, as in `F+L`), `false_claim` and `note`.
+  - **The check:** `db_query`, the SQL that returns the `db_truth` rows.
 - **`db_facts.py`** holds that SQL for each query and builds those two columns. `trace_store.py` is the trace loader shared by the scripts.
 - **`view.py`** is a compact trace viewer for reading traces. It cuts long text, so read the JSON when a label depends on the full answer.
 
