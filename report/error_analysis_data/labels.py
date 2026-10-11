@@ -1,11 +1,13 @@
 """Join the hand labels (label_data.py) with the traces, print the counts used in error_analysis.md,
 run the ID-grounding check, and optionally write labels.csv with the ground-truth DB columns.
 
-Usage: python labels.py traces.jsonl [labels.csv] [store.db]
+Usage: python labels.py [--labels MODULE] traces.jsonl [labels.csv] [store.db]
+--labels picks the label module (default label_data).
 """
 from __future__ import annotations
 
 import csv
+import importlib
 import re
 import statistics
 import sys
@@ -212,9 +214,14 @@ class SummaryReport:
 
 
 def main():
-    traces_path, csv_path = sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None
-    db_path = sys.argv[3] if len(sys.argv) > 3 else DEFAULT_DB
-    store, book = TraceStore.load(traces_path), LabelBook()
+    args = sys.argv[1:]
+    data = label_data
+    if args[:1] == ["--labels"]:  # e.g. --labels label_data_better_tool_docstring
+        data = importlib.import_module(args[1])
+        args = args[2:]
+    traces_path, csv_path = args[0], args[1] if len(args) > 1 else None
+    db_path = args[2] if len(args) > 2 else DEFAULT_DB
+    store, book = TraceStore.load(traces_path), LabelBook(data)
     table = LabelTable(store, book)
     if csv_path:
         table.write_csv(csv_path, DbFacts(db_path))

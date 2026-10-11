@@ -3,15 +3,28 @@
 from __future__ import annotations
 
 import re
+from typing import Annotated
 
 from langchain_core.tools import tool
+from pydantic import Field
 
 from src.data.database import get_connection
 
 
+# The model sees each tool's name, docstring, and argument descriptions, but not
+# its return type, so each docstring says what the result contains.
+
+OrderId = Annotated[int, Field(description="The order number, e.g. 14 for order #14.")]
+ProductRef = Annotated[
+    str, Field(description='The product ID (e.g. "33") or name (e.g. "Vacuum Insulated Tumbler").')
+]
+
+
 @tool
-def lookup_order(order_id: int) -> str:
-    """Find order information and status details. Use this to get data about an order."""
+def lookup_order(order_id: OrderId) -> str:
+    """Get one order's status, order date, total, customer, and items bought. Use this
+    when the customer gives an order number and asks what they bought, what it
+    cost, or its status. For tracking or delivery dates, use get_shipping_status."""
     conn = get_connection()
     order = conn.execute(
         "SELECT o.id, o.status, o.created_at, o.total, c.name, c.email "
@@ -43,8 +56,12 @@ def lookup_order(order_id: int) -> str:
 
 
 @tool
-def search_orders(query: str) -> str:
-    """Find orders matching the query. Returns a list of orders."""
+def search_orders(
+    query: Annotated[str, Field(description="The customer's exact email address.")],
+) -> str:
+    """List every order for a customer's email address, newest first, with each
+    order's status, order date, and total. If the customer has not given an email,
+    ask for it instead of calling this tool."""
     conn = get_connection()
     rows = conn.execute(
         "SELECT o.id, o.status, o.created_at, o.total, c.name, c.email "
@@ -123,9 +140,10 @@ def _not_exact_header(product: str, matched: bool) -> str:
 
 
 @tool
-def get_product_details(product: str) -> str:
-    """Get a product's name, category, price, and description. Pass the product's
-    ID (e.g. "33") or its name (e.g. "Vacuum Insulated Tumbler")."""
+def get_product_details(product: ProductRef) -> str:
+    """Get a product's ID, name, category, price, and description. If the result
+    starts with "No exact match", the products are only close matches, not the
+    item asked for."""
     conn = get_connection()
     rows, matched = _find_products(conn, product, "id, name, category, price, description")
     conn.close()
@@ -143,8 +161,12 @@ def get_product_details(product: str) -> str:
 
 
 @tool
-def search_products(query: str) -> str:
-    """Look up products in the system. Use this to find product data."""
+def search_products(
+    query: Annotated[str, Field(description='One short keyword from the product name, in singular form, e.g. "headphone".')],
+) -> str:
+    """Find products whose name or category contains the keyword, with each
+    product's ID, name, category, and price. Use this when the customer asks
+    whether the store sells something."""
     conn = get_connection()
     rows = conn.execute(
         "SELECT id, name, category, price FROM products "
@@ -164,12 +186,14 @@ def search_products(query: str) -> str:
 
 
 @tool
-def list_categories(category: str) -> str:
-    """List the store's catalog. Pass a category or kind of product (e.g.
-    "Footwear", "books", "toys", "yoga") to get the matching in-stock products.
-    Pass "all" to get every category with product counts and price ranges. Use
-    this when the customer asks what the store sells, what categories exist, or
-    which products of a kind are available."""
+def list_categories(
+    category: Annotated[str, Field(description='A category or kind of product (e.g. "Footwear", "toys", "yoga"), or "all".')],
+) -> str:
+    """List the store's catalog. Pass a category or kind of product to get the
+    matching in-stock products. Pass "all" to get every category with its
+    product count and price range. Use this when the customer asks what the
+    store sells, what categories exist, or which products of a kind are
+    available."""
     conn = get_connection()
     products = conn.execute(
         "SELECT id, name, category, price FROM products "
@@ -214,9 +238,10 @@ def list_categories(category: str) -> str:
 
 
 @tool
-def check_inventory(product: str) -> str:
-    """Check whether a product is in stock and how many units are available. Pass
-    the product's ID (e.g. "159") or its name (e.g. "Kettlebell 25lb Cast Iron")."""
+def check_inventory(product: ProductRef) -> str:
+    """Check whether a product is in stock and how many units are available. If
+    the result starts with "No exact match", the products are only close
+    matches, not the item asked for."""
     conn = get_connection()
     rows, matched = _find_products(conn, product, "id, name, stock_quantity")
     conn.close()
@@ -233,8 +258,10 @@ def check_inventory(product: str) -> str:
 
 
 @tool
-def get_shipping_status(order_id: int) -> str:
-    """Get order status and delivery information. Use this for order updates."""
+def get_shipping_status(order_id: OrderId) -> str:
+    """Get an order's shipment: carrier, tracking number, shipping status, ship
+    date, and estimated delivery. Use this when the customer asks where an
+    order is, who delivers it, when it arrives, or for a tracking number."""
     conn = get_connection()
     row = conn.execute(
         "SELECT s.carrier, s.tracking_number, s.status, s.estimated_delivery, "
@@ -260,8 +287,15 @@ def get_shipping_status(order_id: int) -> str:
 
 
 @tool
-def initiate_return(order_id: int, reason: str) -> str:
-    """Handle a customer issue with an order. Use this when a customer has a problem."""
+def initiate_return(
+    order_id: OrderId,
+    reason: Annotated[str, Field(description="Why the customer is returning the order, in their words.")],
+) -> str:
+    """Start a return and refund request for a shipped or delivered order. Use
+    this only when the customer asks to return or send back an order. Returns
+    the return's ID, status, and refund amount. If a return already exists, no
+    new one is created and the existing one is returned. If the order cannot be
+    returned, the result says why."""
     conn = get_connection()
 
     # Check order exists

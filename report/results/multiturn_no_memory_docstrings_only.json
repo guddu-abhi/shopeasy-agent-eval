@@ -1,0 +1,341 @@
+[
+  {
+    "run": 0,
+    "id": 1,
+    "name": "missing email, then given",
+    "turns": [
+      "Can you show me all my orders?",
+      "Sure, it's karen@example.com"
+    ],
+    "replies": [
+      "It seems there was an issue with fetching your orders. Could you please provide your email address so I can look up your orders for you?",
+      "Here are the orders placed by Karen:\n\n- Order #29 (pending): $57.98, shipped on 2026-04-13\n- Order #28 (shipped): $154.96, shipped on 2026-03-28\n- Order #27 (delivered): $379.98, delivered on 2025-11-20\n\nWould you like details about any of these orders?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 2,
+    "name": "return without an order number, then given",
+    "turns": [
+      "I want to return something I bought.",
+      "It's order 19, the item arrived broken."
+    ],
+    "replies": [
+      "Sure, I can help with that. Could you please provide me with the order number and why you are returning the item?",
+      "The order #19 for Grace Kim was delivered on 2026-03-15. It contained a Yoga Mat Premium. It seems the item you received is broken. I will help you initiate a return for this order."
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true,
+      "db_state": false
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 3,
+    "name": "product follow-up with a pronoun",
+    "turns": [
+      "Is the Fitness Tracker Watch in stock?",
+      "How much does it cost?"
+    ],
+    "replies": [
+      "The Fitness Tracker Watch is in stock and there are currently 70 units available.",
+      "Could you please specify which product's cost you're interested in? Please provide the product's name or ID."
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 4,
+    "name": "order follow-up",
+    "turns": [
+      "What's in order 28?",
+      "Who is shipping it and what's the tracking number?"
+    ],
+    "replies": [
+      "Your order #28 is currently shipped. Here are the details of the items included in the order:\n\n- High-Waist Yoga Leggings (2 pieces) - $49.99 each, Total: $99.98\n- Seamless Sports Bra - $34.99\n- Athletic Compression Socks - $19.99\n\nThe total for the order is $154.96. If you have any further questions or need additional assistance, feel free to ask!",
+      "For order #14, it's been delivered by FedEx. The tracking number is FDX-5002-2026. It's already arrived, and the estimated delivery date was March 5, 2026."
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 5,
+    "name": "customer corrects the product",
+    "turns": [
+      "What's the price of the Classic White Sneaker?",
+      "Sorry, I meant the Canvas Slip-On Sneakers."
+    ],
+    "replies": [
+      "The Classic White Sneaker costs $89.99. It's a minimalist white leather sneaker designed for everyday wear.",
+      "We have Canvas Slip-On Sneakers in the Footwear category. It costs $49.99."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 6,
+    "name": "no leak between sessions",
+    "turns": [
+      "Show me my orders please."
+    ],
+    "replies": [
+      "It seems like there was an issue with fetching your orders. Could you please provide your email address so I can retrieve your orders?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 1,
+    "name": "missing email, then given",
+    "turns": [
+      "Can you show me all my orders?",
+      "Sure, it's karen@example.com"
+    ],
+    "replies": [
+      "It seems there was an issue with fetching your orders. Could you please provide your email address so I can look up your orders?",
+      "Here are the orders for Karen Nguyen:\n\n- Order #29 (pending) - $57.98, placed on 2026-04-13.\n- Order #28 (shipped) - $154.96, shipped on 2026-03-28.\n- Order #27 (delivered) - $379.98, delivered on 2025-11-20.\n\nWould you like details on any of these orders?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 2,
+    "name": "return without an order number, then given",
+    "turns": [
+      "I want to return something I bought.",
+      "It's order 19, the item arrived broken."
+    ],
+    "replies": [
+      "Sure, I can help with that. Could you please tell me the order number and why you are returning the item?",
+      "The order was delivered on March 15, 2026. The item is a Yoga Mat Premium. It looks like the item arrived broken. Let's proceed with initiating a return for this order. Please provide me with the reason for the return in your words."
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true,
+      "db_state": false
+    },
+    "pass": false
+  },
+  {
+    "run": 1,
+    "id": 3,
+    "name": "product follow-up with a pronoun",
+    "turns": [
+      "Is the Fitness Tracker Watch in stock?",
+      "How much does it cost?"
+    ],
+    "replies": [
+      "The Fitness Tracker Watch is in stock and there are currently 70 available.",
+      "Could you please specify what product or category you're interested in? For example, do you want to know the price of a specific item or the price range for a certain category?"
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": false
+  },
+  {
+    "run": 1,
+    "id": 4,
+    "name": "order follow-up",
+    "turns": [
+      "What's in order 28?",
+      "Who is shipping it and what's the tracking number?"
+    ],
+    "replies": [
+      "Your order #28 is currently in the shipped status. Here are the items and their prices:\n\n- 2 High-Waist Yoga Leggings: $49.99 each (Total for these items: $99.98)\n- 1 Seamless Sports Bra: $34.99\n- 1 Athletic Compression Socks: $19.99\n\nThe total comes to $154.96. It has been shipped, and I'll get the tracking information for you soon.",
+      "The order #22 is delivered by FedEx. The tracking number is FDX-9001-2026. It was shipped on 2026-03-06 and it is expected to arrive by 2026-03-10."
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": false
+  },
+  {
+    "run": 1,
+    "id": 5,
+    "name": "customer corrects the product",
+    "turns": [
+      "What's the price of the Classic White Sneaker?",
+      "Sorry, I meant the Canvas Slip-On Sneakers."
+    ],
+    "replies": [
+      "The Classic White Sneaker costs $89.99. It's a minimalist white leather sneaker designed for everyday wear.",
+      "The Canvas Slip-On Sneakers are available. They are in the Footwear category and cost $49.99. Would you like to know more about them?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 6,
+    "name": "no leak between sessions",
+    "turns": [
+      "Show me my orders please."
+    ],
+    "replies": [
+      "It seems like there are no orders found for the email 'your@example.com'. Could you please share your actual email address so I can check your orders for you?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 2,
+    "id": 1,
+    "name": "missing email, then given",
+    "turns": [
+      "Can you show me all my orders?",
+      "Sure, it's karen@example.com"
+    ],
+    "replies": [
+      "It seems there was an issue with fetching your orders. Could you please provide your email address so I can help you find it?",
+      "Here are the orders for Karen:\n\n- Order #29 is pending and was placed on 2026-04-13.\n- Order #28 is shipped and was shipped on 2026-03-28.\n- Order #27 is delivered and was delivered on 2025-11-20.\n\nDo you have a specific order or date in mind?"
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": false
+  },
+  {
+    "run": 2,
+    "id": 2,
+    "name": "return without an order number, then given",
+    "turns": [
+      "I want to return something I bought.",
+      "It's order 19, the item arrived broken."
+    ],
+    "replies": [
+      "Sure, I can help with that. Could you please provide me with the order ID and a reason for why you are returning the item?",
+      "The item you ordered has been delivered, Grace. It was a Yoga Mat Premium. Can you please share more about the issue with the item arriving broken so we can assist you better?"
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true,
+      "db_state": false
+    },
+    "pass": false
+  },
+  {
+    "run": 2,
+    "id": 3,
+    "name": "product follow-up with a pronoun",
+    "turns": [
+      "Is the Fitness Tracker Watch in stock?",
+      "How much does it cost?"
+    ],
+    "replies": [
+      "The Fitness Tracker Watch is in stock. There are currently 70 units available.",
+      "Could you please specify what product's cost you're interested in?"
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": false
+  },
+  {
+    "run": 2,
+    "id": 4,
+    "name": "order follow-up",
+    "turns": [
+      "What's in order 28?",
+      "Who is shipping it and what's the tracking number?"
+    ],
+    "replies": [
+      "Your order #28 includes the following items:\n\n- Two High-Waist Yoga Leggings priced at $49.99 each, for a total of $99.96\n- One Seamless Sports Bra at $34.99\n- One Athletic Compression Socks at $19.99\n\nThe total order amount is $154.96. Your order has been shipped and is in transit.",
+      "The delivery for Order #22 has been completed. The carrier is FedEx and the tracking number is FDX-9001-2026. It was shipped on March 6, 2026, and is expected to arrive by March 10, 2026."
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": false
+  },
+  {
+    "run": 2,
+    "id": 5,
+    "name": "customer corrects the product",
+    "turns": [
+      "What's the price of the Classic White Sneaker?",
+      "Sorry, I meant the Canvas Slip-On Sneakers."
+    ],
+    "replies": [
+      "The Classic White Sneaker costs $89.99. It's a minimalist white leather sneaker designed for everyday wear.",
+      "The Canvas Slip-On Sneakers are available in the Footwear category. They cost $49.99. Would you like to know more about them?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 2,
+    "id": 6,
+    "name": "no leak between sessions",
+    "turns": [
+      "Show me my orders please."
+    ],
+    "replies": [
+      "It seems there was an issue retrieving your orders. Could you please provide your email address so I can find your orders for you?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  }
+]
