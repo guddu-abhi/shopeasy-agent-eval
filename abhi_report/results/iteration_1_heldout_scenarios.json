@@ -1,0 +1,3103 @@
+[
+  {
+    "run": 0,
+    "id": 1,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Strategy Card Game is in stock, and how many are available?",
+    "must_contain": [
+      "100"
+    ],
+    "must_contain_any": [],
+    "answer": "The Strategy Card Game is in stock and there are currently 100 units available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Strategy Card Game"
+        },
+        "output": "Product #161: Strategy Card Game\nIn stock: Yes\nQuantity available: 100"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 2,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Corduroy Overalls left? how many",
+    "must_contain": [
+      "35"
+    ],
+    "must_contain_any": [],
+    "answer": "It seems that the Corduroy Overalls (#70) are in stock, and there is 1 unit available. Would you like to place an order for these?",
+    "calls": [
+      {
+        "name": "list_categories",
+        "args": {
+          "category": "clothing"
+        },
+        "output": "Products in clothing:\n  #59: Athletic Compression Socks \u2014 $19.99\n  #65: Breathable Polo Shirt \u2014 $44.99\n  #63: Cargo Jogger Pants \u2014 $54.99\n  #61: Cashmere Beanie Hat \u2014 $39.99\n  #70: Corduroy Overalls \u2014 $79.99\n  #71: Cotton Boxer Briefs 3-Pack \u2014 $29.99\n  #74: Cropped Cardigan \u2014 $54.99\n  #56: Denim Jacket Classic \u2014 $89.99\n  #60: Flannel Pajama Set \u2014 $49.99\n  #53: Fleece Zip-Up Hoodie \u2014 $64.99\n  #64: Graphic Print Sweatshirt \u2014 $59.99\n  #55: High-Waist Yoga Leggings \u2014 $49.99\n  #18: Insulated Winter Jacket \u2014 $199.99\n  #54: Linen Button-Down Shirt \u2014 $54.99\n  #72: Merino Wool Hiking Socks \u2014 $24.99\n  #8: Merino Wool Sweater \u2014 $119.99\n  #6: Organic Cotton T-Shirt \u2014 $34.99\n  #66: Quilted Vest \u2014 $79.99\n  #13: Running Shorts \u2014 $44.99\n  #69: Seamless Sports Bra \u2014 $34.99\n  #57: Silk Blend Scarf \u2014 $44.99\n  #7: Slim Fit Chino Pants \u2014 $59.99\n  #58: Thermal Base Layer Top \u2014 $39.99\n  #68: UPF 50 Sun Hoodie \u2014 $59.99\n  #73: Velvet Blazer \u2014 $149.99\n  #62: Waterproof Rain Poncho \u2014 $24.99\n  #67: Wide Leg Linen Pants \u2014 $64.99"
+      }
+    ],
+    "missing": [
+      "35"
+    ],
+    "ungrounded": [
+      "1"
+    ],
+    "checks": {
+      "contains": false,
+      "any_of": true,
+      "grounded": false,
+      "nonempty": true
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 3,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Collapsible Water Bottle is in stock, and how many are available?",
+    "must_contain": [
+      "180"
+    ],
+    "must_contain_any": [],
+    "answer": "The Collapsible Water Bottle (#131) is in stock and there are 180 units available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Collapsible Water Bottle"
+        },
+        "output": "Product #131: Collapsible Water Bottle\nIn stock: Yes\nQuantity available: 180"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 4,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Fidget Cube Desk Toy left? how many",
+    "must_contain": [
+      "300"
+    ],
+    "must_contain_any": [],
+    "answer": "I found a Fidget Cube Desk Toy in our Toys & Games category. It's product #169 and costs $9.99. It appears to be in stock, but I need to check the current inventory levels.",
+    "calls": [
+      {
+        "name": "search_products",
+        "args": {
+          "query": "Fidget Cube Desk Toy"
+        },
+        "output": "Products matching 'Fidget Cube Desk Toy':\n  #169: Fidget Cube Desk Toy (Toys & Games) \u2014 $9.99"
+      }
+    ],
+    "missing": [
+      "300"
+    ],
+    "ungrounded": [],
+    "checks": {
+      "contains": false,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 5,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Canvas Tote is in stock, and how many are available?",
+    "must_contain": [
+      "200"
+    ],
+    "must_contain_any": [],
+    "answer": "The Canvas Tote is in stock, and there are 200 units available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Canvas Tote"
+        },
+        "output": "Product #80: Canvas Tote Bag\nIn stock: Yes\nQuantity available: 200"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 6,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Black Leather left? how many",
+    "must_contain": [
+      "35"
+    ],
+    "must_contain_any": [],
+    "answer": "Yes, we have Black Leather Dress Shoes available. There are currently 35 units in stock. Is there anything else you need to know?",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Black Leather"
+        },
+        "output": "Product #21: Black Leather Dress Shoes\nIn stock: Yes\nQuantity available: 35"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 7,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Fleece Zip-Up is in stock, and how many are available?",
+    "must_contain": [
+      "100"
+    ],
+    "must_contain_any": [],
+    "answer": "The Fleece Zip-Up Hoodie is in stock and there are 100 units available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Fleece Zip-Up"
+        },
+        "output": "Product #53: Fleece Zip-Up Hoodie\nIn stock: Yes\nQuantity available: 100"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 8,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Electric Scooter is in stock, and how many are available?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "The product you were looking for, the Electric Scooter, seems to be out of stock. Here are the available items in stock:\n\n- Product #45: Electric Toothbrush. It's in stock and there are 100 units available.\n- Product #116: Electric Gooseneck Kettle. It's also in stock and there are 50 units available.\n\nIf you need more information on these, feel free to ask!",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Electric Scooter"
+        },
+        "output": "No exact match for 'Electric Scooter'. Closest products (not the same item; tell the customer this before offering them):\n\nProduct #45: Electric Toothbrush\nIn stock: Yes\nQuantity available: 100\n\nProduct #116: Electric Gooseneck Kettle\nIn stock: Yes\nQuantity available: 50"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": false,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 9,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "casual",
+    "query": "hey do u have any Snowboard Bindings left? how many",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I'm sorry, but there is no product with the name 'Snowboard Bindings'. Could you please check the spelling or provide another category or product name?",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Snowboard Bindings"
+        },
+        "output": "No product found matching 'Snowboard Bindings'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 10,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Camping Tent 4-Person is in stock, and how many are available?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I couldn't find the exact product \"Camping Tent 4-Person\". Here are some similar products that might be what you're looking for:\n\n- \"Camping Backpack 60L\": Yes, it is in stock with 50 units available.\n- \"Smart Plug Wi-Fi 4-Pack\": Yes, it is in stock with 160 units available.\n- \"Packing Cube Set 4-Piece\": Yes, it is in stock with 110 units available.\n- \"Bamboo Toothbrush 4-Pack\": Yes, it is in stock with 200 units available.\n\nPlease let me know if any of these are the products you need, or if you could provide more details so I can assist you better.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Camping Tent 4-Person"
+        },
+        "output": "No exact match for 'Camping Tent 4-Person'. Closest products (not the same item; tell the customer this before offering them):\n\nProduct #19: Camping Backpack 60L\nIn stock: Yes\nQuantity available: 50\n\nProduct #52: Smart Plug Wi-Fi 4-Pack\nIn stock: Yes\nQuantity available: 160\n\nProduct #87: Packing Cube Set 4-Piece\nIn stock: Yes\nQuantity available: 110\n\nProduct #149: Bamboo Toothbrush 4-Pack\nIn stock: Yes\nQuantity available: 200"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 11,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "casual",
+    "query": "hey do u have any Acoustic Guitar left? how many",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I'm sorry, we currently don't have any Acoustic Guitar in stock. Could you please check another type of guitar or product?",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Acoustic Guitar"
+        },
+        "output": "No product found matching 'Acoustic Guitar'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 12,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "What is the price of product #87?",
+    "must_contain": [
+      "$34.99",
+      "Packing Cube Set 4-Piece"
+    ],
+    "must_contain_any": [],
+    "answer": "The product #87, Packing Cube Set 4-Piece, costs $34.99. It is an accessory.",
+    "calls": [
+      {
+        "name": "get_product_details",
+        "args": {
+          "product": "87"
+        },
+        "output": "Product #87: Packing Cube Set 4-Piece\nCategory: Accessories\nPrice: $34.99\nDescription: Lightweight mesh packing cubes in four sizes with carry handle."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 13,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "how much is item 84",
+    "must_contain": [
+      "$29.99",
+      "Titanium Money Clip"
+    ],
+    "must_contain_any": [],
+    "answer": "The Titanium Money Clip (Product #84) costs $29.99. It's an Accessories item.",
+    "calls": [
+      {
+        "name": "get_product_details",
+        "args": {
+          "product": "84"
+        },
+        "output": "Product #84: Titanium Money Clip\nCategory: Accessories\nPrice: $29.99\nDescription: Brushed titanium money clip with spring-loaded grip."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 14,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "What is the price of product #73?",
+    "must_contain": [
+      "$149.99",
+      "Velvet Blazer"
+    ],
+    "must_contain_any": [],
+    "answer": "The price of product #73, the Velvet Blazer, is $149.99. It's a single-breasted velvet blazer in midnight blue, and it's a slim fit.",
+    "calls": [
+      {
+        "name": "get_product_details",
+        "args": {
+          "product": "73"
+        },
+        "output": "Product #73: Velvet Blazer\nCategory: Clothing\nPrice: $149.99\nDescription: Single-breasted velvet blazer in midnight blue, slim fit."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 15,
+    "intent": "product_info",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "formal",
+    "query": "What is the price of product #999?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "It seems there is no product found with the ID 999. Could you please provide the name of the product instead?",
+    "calls": [
+      {
+        "name": "get_product_details",
+        "args": {
+          "product": "999"
+        },
+        "output": "No product found matching '999'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 16,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me what was in order #48 and what it cost in total?",
+    "must_contain": [
+      "$69.97"
+    ],
+    "must_contain_any": [],
+    "answer": "Order #48 for Tina Johansson (tina@example.com) was delivered on 2026-01-02. The total cost was $69.97. Here are the items included in the order:\n\n- **The Art of Mindful Living** - Quantity: 1, Price: $16.99\n- **Home Gardening Guide** - Quantity: 1, Price: $22.99\n- **The Science of Nutrition** - Quantity: 1, Price: $29.99\n\nLet me know if you need any more information!",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 48
+        },
+        "output": "Order #48\nCustomer: Tina Johansson (tina@example.com)\nStatus: delivered\nDate: 2026-01-02\nTotal: $69.97\nItems:\n  - The Art of Mindful Living (qty: 1, $16.99)\n  - Home Gardening Guide (qty: 1, $22.99)\n  - The Science of Nutrition (qty: 1, $29.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 17,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats in order 63 and how much did i pay",
+    "must_contain": [
+      "$169.97"
+    ],
+    "must_contain_any": [],
+    "answer": "Your order #63 has been delivered. Here's the breakdown:\n\n- A Smart Home Speaker for $99.99\n- A Smart Plug Wi-Fi 4-Pack for $29.99\n- A LED Desk Lamp with USB for $39.99\n\nThe total amount you paid was $169.97.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 63
+        },
+        "output": "Order #63\nCustomer: Amir Saleh (amir@example.com)\nStatus: delivered\nDate: 2026-01-12\nTotal: $169.97\nItems:\n  - Smart Home Speaker (qty: 1, $99.99)\n  - Smart Plug Wi-Fi 4-Pack (qty: 1, $29.99)\n  - LED Desk Lamp with USB (qty: 1, $39.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 18,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me what was in order #52 and what it cost in total?",
+    "must_contain": [
+      "$139.97"
+    ],
+    "must_contain_any": [],
+    "answer": "Your order #52, placed on November 28, 2025, was delivered. Here's a breakdown of the items and their total cost:\n\n- Flannel Pajama Set: $49.99\n- Sherpa Throw Blanket: $44.99\n- White Noise Sound Machine: $44.99\n\nThe total cost for the items in this order is $139.97.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 52
+        },
+        "output": "Order #52\nCustomer: Vera Kowalski (vera@example.com)\nStatus: delivered\nDate: 2025-11-28\nTotal: $139.97\nItems:\n  - Flannel Pajama Set (qty: 1, $49.99)\n  - Sherpa Throw Blanket (qty: 1, $44.99)\n  - White Noise Sound Machine (qty: 1, $44.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 19,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats in order 35 and how much did i pay",
+    "must_contain": [
+      "$334.97"
+    ],
+    "must_contain_any": [],
+    "answer": "Your order #35 has been delivered. Here's a summary of your order:\n\n- Black Leather Dress Shoes: $159.99\n- Silk Pocket Square: $24.99\n- Velvet Blazer: $149.99\n\nThe total amount you paid is $334.97.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 35
+        },
+        "output": "Order #35\nCustomer: Noah Patel (noah@example.com)\nStatus: delivered\nDate: 2025-10-30\nTotal: $334.97\nItems:\n  - Black Leather Dress Shoes (qty: 1, $159.99)\n  - Silk Pocket Square (qty: 1, $24.99)\n  - Velvet Blazer (qty: 1, $149.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 20,
+    "intent": "order_details",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "casual",
+    "query": "whats in order 500 and how much did i pay",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I couldn't find order #500. Could you please provide the order ID again?",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 500
+        },
+        "output": "No order found with ID 500."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 21,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #49?",
+    "must_contain": [
+      "FDX-20002-2026",
+      "FedEx"
+    ],
+    "must_contain_any": [],
+    "answer": "The tracking number for your order #49 is FDX-20002-2026 and it's being delivered by FedEx. Your order is currently in transit and is expected to arrive by 2026-04-15.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 49
+        },
+        "output": "Shipping for Order #49\nOrder status: shipped\nCarrier: FedEx\nTracking number: FDX-20002-2026\nShipping status: in_transit\nShipped: 2026-04-03\nEstimated delivery: 2026-04-15"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 22,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "where's my package for order 26?? tracking pls",
+    "must_contain": [
+      "FDX-10003-2026"
+    ],
+    "must_contain_any": [],
+    "answer": "Your package for order #26 has been delivered. The tracking number is FDX-10003-2026. The delivery took place on 2026-02-06 and the estimated delivery date was 2026-02-10.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 26
+        },
+        "output": "Shipping for Order #26\nOrder status: delivered\nCarrier: FedEx\nTracking number: FDX-10003-2026\nShipping status: delivered\nShipped: 2026-02-06\nEstimated delivery: 2026-02-10"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 23,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #34?",
+    "must_contain": [
+      "UPS-13003-2026",
+      "UPS"
+    ],
+    "must_contain_any": [],
+    "answer": "The tracking number for your order #34 is UPS-13003-2026. UPS is the carrier and the package is currently in transit. Estimated delivery is on April 18th.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 34
+        },
+        "output": "Shipping for Order #34\nOrder status: shipped\nCarrier: UPS\nTracking number: UPS-13003-2026\nShipping status: in_transit\nShipped: 2026-04-06\nEstimated delivery: 2026-04-18"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 24,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "where's my package for order 63?? tracking pls",
+    "must_contain": [
+      "FDX-27001-2026"
+    ],
+    "must_contain_any": [],
+    "answer": "Your package for order #63 has been delivered. Here are the details:\n\n- Carrier: FedEx\n- Tracking Number: FDX-27001-2026\n- Delivery Date: 2026-01-13\n- Estimated Delivery Date: 2026-01-18\n\nThank you for your patience!",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 63
+        },
+        "output": "Shipping for Order #63\nOrder status: delivered\nCarrier: FedEx\nTracking number: FDX-27001-2026\nShipping status: delivered\nShipped: 2026-01-13\nEstimated delivery: 2026-01-18"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 25,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "not_shipped",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #15?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "pending",
+      "yet"
+    ],
+    "answer": "I'm sorry, but there's no tracking information available for order #15. The order might not have been shipped yet. You can check back later for updates. If you've provided the tracking information and I missed it, please provide it again or inform me so I can assist you further.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 15
+        },
+        "output": "No shipping information found for order #15. The order may not have shipped yet."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 26,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "not_shipped",
+    "phrasing": "casual",
+    "query": "where's my package for order 51?? tracking pls",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "pending",
+      "yet"
+    ],
+    "answer": "I couldn't find any shipping information for your order #51. It might not have been shipped out yet. You can try checking again later.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 51
+        },
+        "output": "No shipping information found for order #51. The order may not have shipped yet."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 27,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "formal",
+    "query": "What is the current status of order #29?",
+    "must_contain": [
+      "pending"
+    ],
+    "must_contain_any": [],
+    "answer": "Order #29 is currently in the **pending** status. It was placed on 2026-04-13 and the total cost is **$57.98**. It includes:\n- 1 x **Python Programming Cookbook** for **$44.99**\n- 1 x **Journaling Workbook** for **$12.99**\n\nNo shipping is needed at this time. If you need more information, feel free to ask.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 29
+        },
+        "output": "Order #29\nCustomer: Karen Nguyen (karen@example.com)\nStatus: pending\nDate: 2026-04-13\nTotal: $57.98\nItems:\n  - Python Programming Cookbook (qty: 1, $44.99)\n  - Journaling Workbook (qty: 1, $12.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 28,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "shipped",
+    "phrasing": "casual",
+    "query": "any update on order 62",
+    "must_contain": [
+      "shipped"
+    ],
+    "must_contain_any": [],
+    "answer": "Order #62 for customer Zoe Campbell has been shipped. Here are the details:\n\n- **Items**: \n  - Coconut Body Butter (1 x $18.99)\n  - Natural Deodorant Stick (2 x $12.99)\n- **Total Amount**: $44.97\n\nThe order was shipped on 2026-04-04.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 62
+        },
+        "output": "Order #62\nCustomer: Zoe Campbell (zoe@example.com)\nStatus: shipped\nDate: 2026-04-04\nTotal: $44.97\nItems:\n  - Coconut Body Butter (qty: 1, $18.99)\n  - Natural Deodorant Stick (qty: 2, $12.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 29,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "delivered",
+    "phrasing": "formal",
+    "query": "What is the current status of order #63?",
+    "must_contain": [
+      "delivered"
+    ],
+    "must_contain_any": [],
+    "answer": "The order #63 has been delivered. It was shipped by FedEx and can be tracked using the number FDX-27001-2026. The order was delivered on 2026-01-13 and was estimated to arrive by 2026-01-18.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 63
+        },
+        "output": "Shipping for Order #63\nOrder status: delivered\nCarrier: FedEx\nTracking number: FDX-27001-2026\nShipping status: delivered\nShipped: 2026-01-13\nEstimated delivery: 2026-01-18"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 30,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Please list all orders for irene@example.com.",
+    "must_contain": [
+      "$159.98",
+      "$249.99"
+    ],
+    "must_contain_any": [],
+    "answer": "Here are the orders for irene@example.com:\n\n- Order #23, placed on 2026-04-11, has a total of $249.99 and is currently in a \"pending\" status.\n- Order #22, delivered on 2026-03-05, has a total of $159.98.",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "irene@example.com"
+        },
+        "output": "Orders for Irene Wilson (irene@example.com):\n  Order #23: pending \u2014 $249.99 (2026-04-11)\n  Order #22: delivered \u2014 $159.98 (2026-03-05)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 31,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "can u pull up my orders? email is noah@example.com",
+    "must_contain": [
+      "$334.97",
+      "$229.98"
+    ],
+    "must_contain_any": [],
+    "answer": "Here are your orders:\n\n- Order #36, placed on 2026-04-14, is still pending and the total amount is $229.98.\n- Order #35, delivered on 2025-10-30, the total amount is $334.97.\n\nLet me know if you need more information on any of these.",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "noah@example.com"
+        },
+        "output": "Orders for Noah Patel (noah@example.com):\n  Order #36: pending \u2014 $229.98 (2026-04-14)\n  Order #35: delivered \u2014 $334.97 (2025-10-30)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 32,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Please list all orders for henry@example.com.",
+    "must_contain": [
+      "$319.98",
+      "$189.99"
+    ],
+    "must_contain_any": [],
+    "answer": "Here are the orders for Henry Davis (henry@example.com):\n\n- Order #20: Shipped on 2026-04-07 and delivered, total was $319.98.\n- Order #21: Shipment was completed on 2026-02-20, total was $189.99.",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "henry@example.com"
+        },
+        "output": "Orders for Henry Davis (henry@example.com):\n  Order #20: shipped \u2014 $319.98 (2026-04-07)\n  Order #21: delivered \u2014 $189.99 (2026-02-20)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 33,
+    "intent": "order_lookup",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "can you show me all my orders?",
+    "must_contain": [],
+    "must_contain_any": [
+      "email"
+    ],
+    "answer": "I couldn't find any orders for the email 'your@example.com'. Could you please provide me with the correct email address?",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "your@example.com"
+        },
+        "output": "No orders found for 'your@example.com'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 34,
+    "intent": "order_lookup",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "formal",
+    "query": "Please list all orders for nobody@example.com.",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I'm sorry, but there are no orders found for the email 'nobody@example.com'.",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "nobody@example.com"
+        },
+        "output": "No orders found for 'nobody@example.com'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 35,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "I would like to return order #24 because it arrived damaged.",
+    "must_contain": [
+      "$119.98"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "24": 1
+    },
+    "answer": "Your return request for order #24 has been created successfully. The return number is #12. The reason for the return is that the order arrived damaged. The refund is pending approval and will be processed based on the store's refund policy. If you need any further assistance, feel free to ask.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 24,
+          "reason": "arrived damaged"
+        },
+        "output": "Return request created successfully.\nReturn #12 for Order #24\nReason: arrived damaged\nStatus: requested\nRefund amount: $119.98 (pending approval)"
+      }
+    ],
+    "missing": [
+      "$119.98"
+    ],
+    "ungrounded": [],
+    "checks": {
+      "contains": false,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 36,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "need to send back order 48, I ordered the wrong size",
+    "must_contain": [
+      "$69.97"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "48": 1
+    },
+    "answer": "Your return request for order #48 has been successfully created. The return is for the wrong size. The refund amount of $69.97 is pending approval. Please wait for further updates.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 48,
+          "reason": "wrong size"
+        },
+        "output": "Return request created successfully.\nReturn #12 for Order #48\nReason: wrong size\nStatus: requested\nRefund amount: $69.97 (pending approval)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 37,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "I would like to return order #37 because it stopped working.",
+    "must_contain": [
+      "$104.94"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "37": 1
+    },
+    "answer": "Your return request for order #37 has been successfully initiated. The return ID is #12. The reason for the return is \"stopped working\" and the status is \"requested\". The refund amount is $104.94, which is pending approval. Once the refund is processed, you will receive the refund amount.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 37,
+          "reason": "stopped working"
+        },
+        "output": "Return request created successfully.\nReturn #12 for Order #37\nReason: stopped working\nStatus: requested\nRefund amount: $104.94 (pending approval)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 38,
+    "intent": "returns",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "formal",
+    "query": "I would like to return order #29 because it doesn't fit.",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "returns_after": {
+      "29": 0
+    },
+    "answer": "I found your order #29. The order status is pending. \n\nThe items in your order are:\n- \"Python Programming Cookbook\" (qty: 1, $44.99)\n- \"Journaling Workbook\" (qty: 1, $12.99)\n\nKaren, you will need to initiate the return process. Would you like me to guide you through the steps to send back the items so we can process the refund?",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 29
+        },
+        "output": "Order #29\nCustomer: Karen Nguyen (karen@example.com)\nStatus: pending\nDate: 2026-04-13\nTotal: $57.98\nItems:\n  - Python Programming Cookbook (qty: 1, $44.99)\n  - Journaling Workbook (qty: 1, $12.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": false,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 39,
+    "intent": "returns",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "casual",
+    "query": "need to send back order 51, it stopped working",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "returns_after": {
+      "51": 0
+    },
+    "answer": "I'm sorry, but I can't process the return for order #51. The order status is 'pending', and only for orders that are either shipped or delivered can we process returns. Please check the order status or contact customer support for assistance.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 51,
+          "reason": "it stopped working"
+        },
+        "output": "Cannot process return for order #51: order status is 'pending'. Only shipped or delivered orders can be returned."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 40,
+    "intent": "returns",
+    "ref": "id",
+    "state": "return_exists",
+    "phrasing": "formal",
+    "query": "I would like to return order #54 because it arrived damaged.",
+    "must_contain": [
+      "already"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "54": 1
+    },
+    "answer": "A return request already exists for order #54. The last return was for a broken ignition button on a camp stove. The refund amount was $34.99. Is there anything else I can assist you with regarding this return?",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 54,
+          "reason": "arrived damaged"
+        },
+        "output": "A return request already exists for order #54. No new return was created.\nReturn #8\nReason: Camp stove ignition button broken on arrival\nStatus: completed\nRefund amount: $34.99"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 41,
+    "intent": "returns",
+    "ref": "id",
+    "state": "return_exists",
+    "phrasing": "casual",
+    "query": "need to send back order 42, it arrived damaged",
+    "must_contain": [
+      "already"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "42": 1
+    },
+    "answer": "A return request already exists for your order #42. The issue has been noted, and a return request with ID #6 has been made. The return status is \"requested\" and the refund amount is not yet set. You will receive updates on the progress of your return.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 42,
+          "reason": "arrived damaged"
+        },
+        "output": "A return request already exists for order #42. No new return was created.\nReturn #6\nReason: Board game collection box was crushed during shipping\nStatus: requested\nRefund amount: not set yet"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 42,
+    "intent": "out_of_scope",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Which of your headphones has the best customer reviews?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "review",
+      "rating"
+    ],
+    "answer": "I found one product matching your query. It's the Wireless Noise-Cancelling Headphones (#4). Would you like to know more about this product?",
+    "calls": [
+      {
+        "name": "search_products",
+        "args": {
+          "query": "headphones"
+        },
+        "output": "Products matching 'headphones':\n  #4: Wireless Noise-Cancelling Headphones (Electronics) \u2014 $299.99"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": false,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": false
+  },
+  {
+    "run": 0,
+    "id": 43,
+    "intent": "out_of_scope",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats ur top rated running shoe",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "review",
+      "rating"
+    ],
+    "answer": "One of the top-rated running shoes is the Blue Ultraboost Running Shoe priced at $179.99. Would you like more details on this product?",
+    "calls": [
+      {
+        "name": "search_products",
+        "args": {
+          "query": "running shoe"
+        },
+        "output": "Products matching 'running shoe':\n  #1: Blue Ultraboost Running Shoe (Footwear) \u2014 $179.99"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": false,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": false
+  },
+  {
+    "run": 1,
+    "id": 1,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Strategy Card Game is in stock, and how many are available?",
+    "must_contain": [
+      "100"
+    ],
+    "must_contain_any": [],
+    "answer": "The Strategy Card Game is in stock, and there are currently 100 units available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Strategy Card Game"
+        },
+        "output": "Product #161: Strategy Card Game\nIn stock: Yes\nQuantity available: 100"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 2,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Corduroy Overalls left? how many",
+    "must_contain": [
+      "35"
+    ],
+    "must_contain_any": [],
+    "answer": "The Corduroy Overalls, which are product #70, are available. I'm sorry, but I don't have information on the stock level of this product. If you're interested in checking if it's in stock, I can do that for you.",
+    "calls": [
+      {
+        "name": "list_categories",
+        "args": {
+          "category": "clothing"
+        },
+        "output": "Products in clothing:\n  #59: Athletic Compression Socks \u2014 $19.99\n  #65: Breathable Polo Shirt \u2014 $44.99\n  #63: Cargo Jogger Pants \u2014 $54.99\n  #61: Cashmere Beanie Hat \u2014 $39.99\n  #70: Corduroy Overalls \u2014 $79.99\n  #71: Cotton Boxer Briefs 3-Pack \u2014 $29.99\n  #74: Cropped Cardigan \u2014 $54.99\n  #56: Denim Jacket Classic \u2014 $89.99\n  #60: Flannel Pajama Set \u2014 $49.99\n  #53: Fleece Zip-Up Hoodie \u2014 $64.99\n  #64: Graphic Print Sweatshirt \u2014 $59.99\n  #55: High-Waist Yoga Leggings \u2014 $49.99\n  #18: Insulated Winter Jacket \u2014 $199.99\n  #54: Linen Button-Down Shirt \u2014 $54.99\n  #72: Merino Wool Hiking Socks \u2014 $24.99\n  #8: Merino Wool Sweater \u2014 $119.99\n  #6: Organic Cotton T-Shirt \u2014 $34.99\n  #66: Quilted Vest \u2014 $79.99\n  #13: Running Shorts \u2014 $44.99\n  #69: Seamless Sports Bra \u2014 $34.99\n  #57: Silk Blend Scarf \u2014 $44.99\n  #7: Slim Fit Chino Pants \u2014 $59.99\n  #58: Thermal Base Layer Top \u2014 $39.99\n  #68: UPF 50 Sun Hoodie \u2014 $59.99\n  #73: Velvet Blazer \u2014 $149.99\n  #62: Waterproof Rain Poncho \u2014 $24.99\n  #67: Wide Leg Linen Pants \u2014 $64.99"
+      }
+    ],
+    "missing": [
+      "35"
+    ],
+    "ungrounded": [],
+    "checks": {
+      "contains": false,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": false
+  },
+  {
+    "run": 1,
+    "id": 3,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Collapsible Water Bottle is in stock, and how many are available?",
+    "must_contain": [
+      "180"
+    ],
+    "must_contain_any": [],
+    "answer": "The Collapsible Water Bottle is in stock. There are 180 units available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Collapsible Water Bottle"
+        },
+        "output": "Product #131: Collapsible Water Bottle\nIn stock: Yes\nQuantity available: 180"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 4,
+    "intent": "inventory",
+    "ref": "exact_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Fidget Cube Desk Toy left? how many",
+    "must_contain": [
+      "300"
+    ],
+    "must_contain_any": [],
+    "answer": "Yes, I have the Fidget Cube Desk Toy in stock. There are 300 units available. Is there anything else you need to know about this product?",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Fidget Cube Desk Toy"
+        },
+        "output": "Product #169: Fidget Cube Desk Toy\nIn stock: Yes\nQuantity available: 300"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 5,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Canvas Tote is in stock, and how many are available?",
+    "must_contain": [
+      "200"
+    ],
+    "must_contain_any": [],
+    "answer": "The Canvas Tote is in stock, and there are 200 units available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Canvas Tote"
+        },
+        "output": "Product #80: Canvas Tote Bag\nIn stock: Yes\nQuantity available: 200"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 6,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "hey do u have any Black Leather left? how many",
+    "must_contain": [
+      "35"
+    ],
+    "must_contain_any": [],
+    "answer": "Yes, we have Black Leather left. There are currently 35 pairs available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Black Leather"
+        },
+        "output": "Product #21: Black Leather Dress Shoes\nIn stock: Yes\nQuantity available: 35"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 7,
+    "intent": "inventory",
+    "ref": "partial_name",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Fleece Zip-Up is in stock, and how many are available?",
+    "must_contain": [
+      "100"
+    ],
+    "must_contain_any": [],
+    "answer": "The Fleece Zip-Up Hoodie is in stock, and there are 100 units available.",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Fleece Zip-Up"
+        },
+        "output": "Product #53: Fleece Zip-Up Hoodie\nIn stock: Yes\nQuantity available: 100"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 8,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Electric Scooter is in stock, and how many are available?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I couldn't find an exact match for 'Electric Scooter', but I found two products that are close:\n\n- Product #45 is an Electric Toothbrush. It's in stock and there are 100 available.\n- Product #116 is an Electric Gooseneck Kettle. It's in stock and there are 50 available.\n\nDo you mean one of these products, or is there another name you're looking for?",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Electric Scooter"
+        },
+        "output": "No exact match for 'Electric Scooter'. Closest products (not the same item; tell the customer this before offering them):\n\nProduct #45: Electric Toothbrush\nIn stock: Yes\nQuantity available: 100\n\nProduct #116: Electric Gooseneck Kettle\nIn stock: Yes\nQuantity available: 50"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 9,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "casual",
+    "query": "hey do u have any Snowboard Bindings left? how many",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I'm sorry, there is no product called Snowboard Bindings. Could you please check the product name or category?",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Snowboard Bindings"
+        },
+        "output": "No product found matching 'Snowboard Bindings'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 10,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "formal",
+    "query": "Could you tell me whether the Camping Tent 4-Person is in stock, and how many are available?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I couldn't find an exact match for the \"Camping Tent 4-Person\". Here are some related items in stock:\n\n- Product #19: Camping Backpack 60L - In stock: Yes, Quantity available: 50\n- Product #52: Smart Plug Wi-Fi 4-Pack - In stock: Yes, Quantity available: 160\n- Product #87: Packing Cube Set 4-Piece - In stock: Yes, Quantity available: 110\n- Product #149: Bamboo Toothbrush 4-Pack - In stock: Yes, Quantity available: 200\n\nThe Camping Tent 4-Person seems to be out of stock. Would you like to search for something else?",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Camping Tent 4-Person"
+        },
+        "output": "No exact match for 'Camping Tent 4-Person'. Closest products (not the same item; tell the customer this before offering them):\n\nProduct #19: Camping Backpack 60L\nIn stock: Yes\nQuantity available: 50\n\nProduct #52: Smart Plug Wi-Fi 4-Pack\nIn stock: Yes\nQuantity available: 160\n\nProduct #87: Packing Cube Set 4-Piece\nIn stock: Yes\nQuantity available: 110\n\nProduct #149: Bamboo Toothbrush 4-Pack\nIn stock: Yes\nQuantity available: 200"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 11,
+    "intent": "inventory",
+    "ref": "nonexistent",
+    "state": "not_sold",
+    "phrasing": "casual",
+    "query": "hey do u have any Acoustic Guitar left? how many",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I'm sorry, but we don't have any product listed as 'Acoustic Guitar'. Could you please provide more details or a different name for the product you're looking for?",
+    "calls": [
+      {
+        "name": "check_inventory",
+        "args": {
+          "product": "Acoustic Guitar"
+        },
+        "output": "No product found matching 'Acoustic Guitar'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 12,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "What is the price of product #87?",
+    "must_contain": [
+      "$34.99",
+      "Packing Cube Set 4-Piece"
+    ],
+    "must_contain_any": [],
+    "answer": "The price of product #87, the Packing Cube Set 4-Piece, is $34.99. It's part of the Accessories category.",
+    "calls": [
+      {
+        "name": "get_product_details",
+        "args": {
+          "product": "87"
+        },
+        "output": "Product #87: Packing Cube Set 4-Piece\nCategory: Accessories\nPrice: $34.99\nDescription: Lightweight mesh packing cubes in four sizes with carry handle."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 13,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "how much is item 84",
+    "must_contain": [
+      "$29.99",
+      "Titanium Money Clip"
+    ],
+    "must_contain_any": [],
+    "answer": "The item #84, Titanium Money Clip, costs $29.99. It's in the Accessories category.",
+    "calls": [
+      {
+        "name": "get_product_details",
+        "args": {
+          "product": "84"
+        },
+        "output": "Product #84: Titanium Money Clip\nCategory: Accessories\nPrice: $29.99\nDescription: Brushed titanium money clip with spring-loaded grip."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 14,
+    "intent": "product_info",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "What is the price of product #73?",
+    "must_contain": [
+      "$149.99",
+      "Velvet Blazer"
+    ],
+    "must_contain_any": [],
+    "answer": "The price of product #73, the Velvet Blazer, is $149.99. It's a single-breasted velvet blazer in midnight blue with a slim fit.",
+    "calls": [
+      {
+        "name": "get_product_details",
+        "args": {
+          "product": "73"
+        },
+        "output": "Product #73: Velvet Blazer\nCategory: Clothing\nPrice: $149.99\nDescription: Single-breasted velvet blazer in midnight blue, slim fit."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 15,
+    "intent": "product_info",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "formal",
+    "query": "What is the price of product #999?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I'm sorry, but there is no product with the ID 999. Could you please provide the correct product name or ID?",
+    "calls": [
+      {
+        "name": "get_product_details",
+        "args": {
+          "product": "999"
+        },
+        "output": "No product found matching '999'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 16,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me what was in order #48 and what it cost in total?",
+    "must_contain": [
+      "$69.97"
+    ],
+    "must_contain_any": [],
+    "answer": "Order #48 for customer Tina Johansson (tina@example.com) was delivered on 2026-01-02. The total cost was $69.97. It included:\n\n- The Art of Mindful Living (1 item, $16.99)\n- Home Gardening Guide (1 item, $22.99)\n- The Science of Nutrition (1 item, $29.99)\n\nLet me know if you need any more information!",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 48
+        },
+        "output": "Order #48\nCustomer: Tina Johansson (tina@example.com)\nStatus: delivered\nDate: 2026-01-02\nTotal: $69.97\nItems:\n  - The Art of Mindful Living (qty: 1, $16.99)\n  - Home Gardening Guide (qty: 1, $22.99)\n  - The Science of Nutrition (qty: 1, $29.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 17,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats in order 63 and how much did i pay",
+    "must_contain": [
+      "$169.97"
+    ],
+    "must_contain_any": [],
+    "answer": "Your order #63 has been delivered. Here's a breakdown of the items and their total cost:\n\n- Smart Home Speaker: $99.99\n- Smart Plug Wi-Fi 4-Pack: $29.99\n- LED Desk Lamp with USB: $39.99\n\nThe total amount you paid for your order was $169.97.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 63
+        },
+        "output": "Order #63\nCustomer: Amir Saleh (amir@example.com)\nStatus: delivered\nDate: 2026-01-12\nTotal: $169.97\nItems:\n  - Smart Home Speaker (qty: 1, $99.99)\n  - Smart Plug Wi-Fi 4-Pack (qty: 1, $29.99)\n  - LED Desk Lamp with USB (qty: 1, $39.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 18,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you tell me what was in order #52 and what it cost in total?",
+    "must_contain": [
+      "$139.97"
+    ],
+    "must_contain_any": [],
+    "answer": "Order #52 was placed by Vera Kowalski and it was delivered on 2025-11-28. The total cost was $139.97. It contained:\n- A Flannel Pajama Set (1 unit, $49.99)\n- A Sherpa Throw Blanket (1 unit, $44.99)\n- A White Noise Sound Machine (1 unit, $44.99)\n\nThe total quantity and price of each item is as follows:\n- Flannel Pajama Set: 1 unit at $49.99\n- Sherpa Throw Blanket: 1 unit at $44.99\n- White Noise Sound Machine: 1 unit at $44.99\n\nThe order was completed successfully. If you need any more assistance, feel free to ask.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 52
+        },
+        "output": "Order #52\nCustomer: Vera Kowalski (vera@example.com)\nStatus: delivered\nDate: 2025-11-28\nTotal: $139.97\nItems:\n  - Flannel Pajama Set (qty: 1, $49.99)\n  - Sherpa Throw Blanket (qty: 1, $44.99)\n  - White Noise Sound Machine (qty: 1, $44.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 19,
+    "intent": "order_details",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats in order 35 and how much did i pay",
+    "must_contain": [
+      "$334.97"
+    ],
+    "must_contain_any": [],
+    "answer": "Your order #35, placed on 2025-10-30, was delivered. It included:\n\n- A pair of Black Leather Dress Shoes for $159.99\n- A Silk Pocket Square for $24.99\n- A Velvet Blazer for $149.99\n\nThe total amount you paid was $334.97.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 35
+        },
+        "output": "Order #35\nCustomer: Noah Patel (noah@example.com)\nStatus: delivered\nDate: 2025-10-30\nTotal: $334.97\nItems:\n  - Black Leather Dress Shoes (qty: 1, $159.99)\n  - Silk Pocket Square (qty: 1, $24.99)\n  - Velvet Blazer (qty: 1, $149.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 20,
+    "intent": "order_details",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "casual",
+    "query": "whats in order 500 and how much did i pay",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I couldn't find order #500. Could you please check if you copied the order ID correctly or provide another ID?",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 500
+        },
+        "output": "No order found with ID 500."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 21,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #49?",
+    "must_contain": [
+      "FDX-20002-2026",
+      "FedEx"
+    ],
+    "must_contain_any": [],
+    "answer": "The tracking number for order #49 is FDX-20002-2026. It is currently in transit and the estimated delivery date is April 15, 2026.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 49
+        },
+        "output": "Shipping for Order #49\nOrder status: shipped\nCarrier: FedEx\nTracking number: FDX-20002-2026\nShipping status: in_transit\nShipped: 2026-04-03\nEstimated delivery: 2026-04-15"
+      }
+    ],
+    "missing": [
+      "FedEx"
+    ],
+    "ungrounded": [],
+    "checks": {
+      "contains": false,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": false
+  },
+  {
+    "run": 1,
+    "id": 22,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "where's my package for order 26?? tracking pls",
+    "must_contain": [
+      "FDX-10003-2026"
+    ],
+    "must_contain_any": [],
+    "answer": "Your package for order #26 has been delivered. The tracking number is FDX-10003-2026. The package was delivered on 2026-02-06, and the estimated delivery was on 2026-02-10.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 26
+        },
+        "output": "Shipping for Order #26\nOrder status: delivered\nCarrier: FedEx\nTracking number: FDX-10003-2026\nShipping status: delivered\nShipped: 2026-02-06\nEstimated delivery: 2026-02-10"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 23,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #34?",
+    "must_contain": [
+      "UPS-13003-2026",
+      "UPS"
+    ],
+    "must_contain_any": [],
+    "answer": "The tracking number for order #34 is UPS-13003-2026. UPS is the carrier. The package is currently in transit and is expected to arrive by April 18th, 2026.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 34
+        },
+        "output": "Shipping for Order #34\nOrder status: shipped\nCarrier: UPS\nTracking number: UPS-13003-2026\nShipping status: in_transit\nShipped: 2026-04-06\nEstimated delivery: 2026-04-18"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 24,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "where's my package for order 63?? tracking pls",
+    "must_contain": [
+      "FDX-27001-2026"
+    ],
+    "must_contain_any": [],
+    "answer": "Your package for order #63 has been delivered. The tracking number is FDX-27001-2026. It was delivered on 2026-01-13, and it is estimated to arrive by 2026-01-18.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 63
+        },
+        "output": "Shipping for Order #63\nOrder status: delivered\nCarrier: FedEx\nTracking number: FDX-27001-2026\nShipping status: delivered\nShipped: 2026-01-13\nEstimated delivery: 2026-01-18"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 25,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "not_shipped",
+    "phrasing": "formal",
+    "query": "Could you give me the tracking number and carrier for order #15?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "pending",
+      "yet"
+    ],
+    "answer": "I'm sorry, but we don't have any tracking information for order #15. The order might not have been shipped yet. You can check back later or contact customer support for more details.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 15
+        },
+        "output": "No shipping information found for order #15. The order may not have shipped yet."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 26,
+    "intent": "shipping",
+    "ref": "id",
+    "state": "not_shipped",
+    "phrasing": "casual",
+    "query": "where's my package for order 51?? tracking pls",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "pending",
+      "yet"
+    ],
+    "answer": "I'm sorry, but there's no tracking information available for order #51. The order might not have been shipped yet. You can check back later or contact customer support for more information.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 51
+        },
+        "output": "No shipping information found for order #51. The order may not have shipped yet."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 27,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "formal",
+    "query": "What is the current status of order #29?",
+    "must_contain": [
+      "pending"
+    ],
+    "must_contain_any": [],
+    "answer": "The status of order #29 is \"pending\". It was placed on 2026-04-13. Here are the details of the items:\n\n- \"Python Programming Cookbook\" (qty: 1, $44.99)\n- \"Journaling Workbook\" (qty: 1, $12.99)\n\nThe total amount is $57.98.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 29
+        },
+        "output": "Order #29\nCustomer: Karen Nguyen (karen@example.com)\nStatus: pending\nDate: 2026-04-13\nTotal: $57.98\nItems:\n  - Python Programming Cookbook (qty: 1, $44.99)\n  - Journaling Workbook (qty: 1, $12.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 28,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "shipped",
+    "phrasing": "casual",
+    "query": "any update on order 62",
+    "must_contain": [
+      "shipped"
+    ],
+    "must_contain_any": [],
+    "answer": "The order #62 by Zoe Campbell has been shipped. Here's the order summary:\n\n- Coconut Body Butter (1 unit, $18.99)\n- Natural Deodorant Stick (2 units, $12.99)\n\nIt was shipped on April 4, 2026. The total amount is $44.97.",
+    "calls": [
+      {
+        "name": "lookup_order",
+        "args": {
+          "order_id": 62
+        },
+        "output": "Order #62\nCustomer: Zoe Campbell (zoe@example.com)\nStatus: shipped\nDate: 2026-04-04\nTotal: $44.97\nItems:\n  - Coconut Body Butter (qty: 1, $18.99)\n  - Natural Deodorant Stick (qty: 2, $12.99)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 29,
+    "intent": "order_status",
+    "ref": "id",
+    "state": "delivered",
+    "phrasing": "formal",
+    "query": "What is the current status of order #63?",
+    "must_contain": [
+      "delivered"
+    ],
+    "must_contain_any": [],
+    "answer": "Order #63 has been delivered. It was shipped via FedEx and the tracking number is FDX-27001-2026. The delivery was made on 2026-01-13, and the expected delivery date was on 2026-01-18.",
+    "calls": [
+      {
+        "name": "get_shipping_status",
+        "args": {
+          "order_id": 63
+        },
+        "output": "Shipping for Order #63\nOrder status: delivered\nCarrier: FedEx\nTracking number: FDX-27001-2026\nShipping status: delivered\nShipped: 2026-01-13\nEstimated delivery: 2026-01-18"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 30,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Please list all orders for irene@example.com.",
+    "must_contain": [
+      "$159.98",
+      "$249.99"
+    ],
+    "must_contain_any": [],
+    "answer": "Here are the orders for irene@example.com:\n\n- Order #23 is in the \"pending\" status with a total of $249.99, placed on 2026-04-11.\n- Order #22 has been delivered and costs $159.98, placed on 2026-03-05.",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "irene@example.com"
+        },
+        "output": "Orders for Irene Wilson (irene@example.com):\n  Order #23: pending \u2014 $249.99 (2026-04-11)\n  Order #22: delivered \u2014 $159.98 (2026-03-05)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 31,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "can u pull up my orders? email is noah@example.com",
+    "must_contain": [
+      "$334.97",
+      "$229.98"
+    ],
+    "must_contain_any": [],
+    "answer": "Here are your orders:\n\n- Order #36 is pending, with a total of $229.98 and delivered on 2026-04-14.\n- Order #35 was delivered, with a total of $334.97 and delivered on 2025-10-30. \n\nWould you like more information on any of these orders?",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "noah@example.com"
+        },
+        "output": "Orders for Noah Patel (noah@example.com):\n  Order #36: pending \u2014 $229.98 (2026-04-14)\n  Order #35: delivered \u2014 $334.97 (2025-10-30)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 32,
+    "intent": "order_lookup",
+    "ref": "email",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Please list all orders for henry@example.com.",
+    "must_contain": [
+      "$319.98",
+      "$189.99"
+    ],
+    "must_contain_any": [],
+    "answer": "Here are the orders for Henry Davis (henry@example.com):\n\n- Order #20, shipped on 2026-04-07, total was $319.98.\n- Order #21, delivered on 2026-02-20, total was $189.99.",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "henry@example.com"
+        },
+        "output": "Orders for Henry Davis (henry@example.com):\n  Order #20: shipped \u2014 $319.98 (2026-04-07)\n  Order #21: delivered \u2014 $189.99 (2026-02-20)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 33,
+    "intent": "order_lookup",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "can you show me all my orders?",
+    "must_contain": [],
+    "must_contain_any": [
+      "email"
+    ],
+    "answer": "I'm sorry, but there don't seem to be any orders found for the email 'you@example.com'. Could you please check if you have entered it correctly? Alternatively, you can provide the order ID if you remember one.",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "you@example.com"
+        },
+        "output": "No orders found for 'you@example.com'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 34,
+    "intent": "order_lookup",
+    "ref": "nonexistent",
+    "state": "not_found",
+    "phrasing": "formal",
+    "query": "Please list all orders for nobody@example.com.",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "answer": "I'm sorry, but there are no orders found for the email address nobody@example.com. Could you provide me with the correct email address please?",
+    "calls": [
+      {
+        "name": "search_orders",
+        "args": {
+          "query": "nobody@example.com"
+        },
+        "output": "No orders found for 'nobody@example.com'."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 35,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "I would like to return order #24 because it arrived damaged.",
+    "must_contain": [
+      "$119.98"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "24": 1
+    },
+    "answer": "Your return request for order #24 has been successfully submitted with the reason \"arrived damaged\". The return tracking number is #12, and the refund amount of $119.98 is pending approval. You will receive an email with the full details.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 24,
+          "reason": "arrived damaged"
+        },
+        "output": "Return request created successfully.\nReturn #12 for Order #24\nReason: arrived damaged\nStatus: requested\nRefund amount: $119.98 (pending approval)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 36,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "need to send back order 48, I ordered the wrong size",
+    "must_contain": [
+      "$69.97"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "48": 1
+    },
+    "answer": "Your return request for order #48 has been successfully processed. The return request ID is Return #12. The refund process is currently pending approval and will be applied to your account once it's processed.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 48,
+          "reason": "wrong size"
+        },
+        "output": "Return request created successfully.\nReturn #12 for Order #48\nReason: wrong size\nStatus: requested\nRefund amount: $69.97 (pending approval)"
+      }
+    ],
+    "missing": [
+      "$69.97"
+    ],
+    "ungrounded": [],
+    "checks": {
+      "contains": false,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": false
+  },
+  {
+    "run": 1,
+    "id": 37,
+    "intent": "returns",
+    "ref": "id",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "I would like to return order #37 because it stopped working.",
+    "must_contain": [
+      "$104.94"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "37": 1
+    },
+    "answer": "Your return request for order #37 has been successfully initiated. \n\n- The return reference is Return #12.\n- The reason for the return is that the product stopped working.\n- The status of your return is 'requested'.\n- The refund amount of $104.94 is pending approval.\n\nYou will be notified once the refund is processed. If you have any further questions, feel free to ask.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 37,
+          "reason": "stopped working"
+        },
+        "output": "Return request created successfully.\nReturn #12 for Order #37\nReason: stopped working\nStatus: requested\nRefund amount: $104.94 (pending approval)"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 38,
+    "intent": "returns",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "formal",
+    "query": "I would like to return order #29 because it doesn't fit.",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "returns_after": {
+      "29": 0
+    },
+    "answer": "I'm sorry, but I can't process the return for order #29. The order status is currently 'pending'. Only if the order is either 'shipped' or 'delivered', it can be returned. Please check the order status and try again. If you need further assistance, feel free to ask.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 29,
+          "reason": "doesn't fit"
+        },
+        "output": "Cannot process return for order #29: order status is 'pending'. Only shipped or delivered orders can be returned."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 39,
+    "intent": "returns",
+    "ref": "id",
+    "state": "pending",
+    "phrasing": "casual",
+    "query": "need to send back order 51, it stopped working",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot"
+    ],
+    "returns_after": {
+      "51": 0
+    },
+    "answer": "I'm sorry, I can't process a return for order #51. The order status is 'pending', and only new orders can be returned. Please contact customer service for assistance.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 51,
+          "reason": "stopped working"
+        },
+        "output": "Cannot process return for order #51: order status is 'pending'. Only shipped or delivered orders can be returned."
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 40,
+    "intent": "returns",
+    "ref": "id",
+    "state": "return_exists",
+    "phrasing": "formal",
+    "query": "I would like to return order #54 because it arrived damaged.",
+    "must_contain": [
+      "already"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "54": 1
+    },
+    "answer": "A return request already exists for order #54. The previous reason was the camp stove ignition button breaking upon arrival. The refund amount of $34.99 has been processed. If you need further assistance, feel free to ask.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 54,
+          "reason": "arrived damaged"
+        },
+        "output": "A return request already exists for order #54. No new return was created.\nReturn #8\nReason: Camp stove ignition button broken on arrival\nStatus: completed\nRefund amount: $34.99"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 41,
+    "intent": "returns",
+    "ref": "id",
+    "state": "return_exists",
+    "phrasing": "casual",
+    "query": "need to send back order 42, it arrived damaged",
+    "must_contain": [
+      "already"
+    ],
+    "must_contain_any": [],
+    "returns_after": {
+      "42": 1
+    },
+    "answer": "A return request already exists for order #42. The current status is that the return has been requested, but the refund amount is not set yet. You can track the status using the reference number: Return #6.",
+    "calls": [
+      {
+        "name": "initiate_return",
+        "args": {
+          "order_id": 42,
+          "reason": "arrived damaged"
+        },
+        "output": "A return request already exists for order #42. No new return was created.\nReturn #6\nReason: Board game collection box was crushed during shipping\nStatus: requested\nRefund amount: not set yet"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": true,
+      "grounded": true,
+      "nonempty": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 42,
+    "intent": "out_of_scope",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "formal",
+    "query": "Which of your headphones has the best customer reviews?",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "review",
+      "rating"
+    ],
+    "answer": "I found one product matching your query. It's Wireless Noise-Cancelling Headphones (#4) from the Electronics category. Would you like to know more details about it?",
+    "calls": [
+      {
+        "name": "search_products",
+        "args": {
+          "query": "headphone"
+        },
+        "output": "Products matching 'headphone':\n  #4: Wireless Noise-Cancelling Headphones (Electronics) \u2014 $299.99"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": false,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": false
+  },
+  {
+    "run": 1,
+    "id": 43,
+    "intent": "out_of_scope",
+    "ref": "none",
+    "state": "normal",
+    "phrasing": "casual",
+    "query": "whats ur top rated running shoe",
+    "must_contain": [],
+    "must_contain_any": [
+      "not",
+      "no ",
+      "don't",
+      "do not",
+      "doesn't",
+      "couldn't",
+      "unable",
+      "sorry",
+      "can't",
+      "cannot",
+      "review",
+      "rating"
+    ],
+    "answer": "I found a popular product for you. The Blue Ultraboost Running Shoe is available. It's priced at $179.99. Would you like more details on this product?",
+    "calls": [
+      {
+        "name": "search_products",
+        "args": {
+          "query": "running shoe"
+        },
+        "output": "Products matching 'running shoe':\n  #1: Blue Ultraboost Running Shoe (Footwear) \u2014 $179.99"
+      }
+    ],
+    "missing": [],
+    "ungrounded": [],
+    "checks": {
+      "contains": true,
+      "any_of": false,
+      "grounded": true,
+      "nonempty": true
+    },
+    "pass": false
+  }
+]
