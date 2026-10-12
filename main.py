@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import uuid
+
 from src.agent import Agent
 
 
@@ -9,7 +11,9 @@ def main() -> None:
     print("ShopEasy Customer Support Agent")
     print("Type your message, or /quit to exit.\n")
 
-    agent = Agent()
+    # One thread per chat session, so follow-up turns keep their context.
+    agent = Agent(memory=True)
+    thread_id = str(uuid.uuid4())
 
     while True:
         try:
@@ -24,7 +28,7 @@ def main() -> None:
             print("Goodbye!")
             break
 
-        response = agent.run(user_input)
+        response = agent.run(user_input, thread_id=thread_id)
         print(f"\nAgent: {response}\n")
 
 

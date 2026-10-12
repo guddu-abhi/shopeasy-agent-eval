@@ -1,0 +1,658 @@
+{
+  "list_categories": [
+    {
+      "id": 1,
+      "question": "Can you give me an overview of what your shop carries?",
+      "answer": "Here is an overview of the categories available in our shop:\n\n- Accessories: 18 products ranging from $12.99 to $189.99\n- Beauty: 14 products ranging from $9.99 to $34.99\n- Books: 12 products ranging from $12.99 to $44.99\n- Clothing: 27 products ranging from $19.99 to $199.99\n- Electronics: 24 products ranging from $12.99 to $349.99\n- Fitness: 15 products ranging from $12.99 to $249.99\n- Footwear: 15 products ranging from $29.99 to $179.99\n- Home: 20 products ranging from $14.99 to $79.99\n- Outdoor: 13 products ranging from $14.99 to $129.99\n- Toys & Games: 12 products ranging from $9.99 to $44.99\n\nIf you need more information about a specific category, let me know!",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 1,
+      "question": "What product departments do you have?",
+      "answer": "Here are the product departments available in our store:\n\n- Accessories: 18 products ($12.99\u2013$189.99)\n- Beauty: 14 products ($9.99\u2013$34.99)\n- Books: 12 products ($12.99\u2013$44.99)\n- Clothing: 27 products ($19.99\u2013$199.99)\n- Electronics: 24 products ($12.99\u2013$349.99)\n- Fitness: 15 products ($12.99\u2013$249.99)\n- Footwear: 15 products ($29.99\u2013$179.99)\n- Home: 20 products ($14.99\u2013$79.99)\n- Outdoor: 13 products ($14.99\u2013$129.99)\n- Toys & Games: 12 products ($9.99\u2013$44.99)\n\nWhich department would you like to see more products from?",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 1,
+      "question": "What categories are available in your store?",
+      "answer": "Here are the categories available in our store:\n\n- Accessories\n- Beauty\n- Books\n- Clothing\n- Electronics\n- Fitness\n- Footwear\n- Home\n- Outdoor\n- Toys & Games\n\nEach category includes a certain range of products with their respective prices. If you need to find a specific product, please provide more details or the name of the product, and I can assist you further.",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 1,
+      "question": "What type of products do you sell?",
+      "answer": "Here are the main categories we offer:\n\n- Accessories: 18 products, ranging from $12.99 to $189.99\n- Beauty: 14 products, ranging from $9.99 to $34.99\n- Books: 12 products, ranging from $12.99 to $44.99\n- Clothing: 27 products, ranging from $19.99 to $199.99\n- Electronics: 24 products, ranging from $12.99 to $349.99\n- Fitness: 15 products, ranging from $12.99 to $249.99\n- Footwear: 15 products, ranging from $29.99 to $179.99\n- Home: 20 products, ranging from $14.99 to $79.99\n- Outdoor: 13 products, ranging from $14.99 to $129.99\n- Toys & Games: 12 products, ranging from $9.99 to $44.99\n\nIf you have a specific type of product in mind, let me know and I can find more information for you!",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 2,
+      "question": "I'm looking for something to read. What books do you carry?",
+      "answer": "We carry a variety of books in our store. Here are some options:\n\n- Board Game Strategy Guide ($19.99)\n- Cookbook: Mediterranean Meals ($32.99)\n- Fiction Bestseller Collection Box ($39.99)\n- Home Gardening Guide ($22.99)\n- Journaling Workbook ($12.99)\n- Mystery Novel: The Last Key ($14.99)\n- Python Programming Cookbook ($44.99)\n- Sketching for Beginners ($18.99)\n- The Art of Mindful Living ($16.99)\n- The Science of Nutrition ($29.99)\n- Travel Photography Handbook ($27.99)\n- World Atlas Illustrated ($34.99)",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 2,
+      "question": "Can you show me your book selection?",
+      "answer": "Here is what we have in the Books category:\n\n- Books: 12 products priced from $12.99 to $44.99.",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": true,
+      "score": 0.0
+    },
+    {
+      "id": 2,
+      "question": "Which books are available in your store?",
+      "answer": "Here are some books available in the store:\n\n- Book #142: \"Board Game Strategy Guide\", priced at $19.99\n- Book #143: \"Cookbook: Mediterranean Meals\", priced at $32.99\n- Book #136: \"Fiction Bestseller Collection Box\", priced at $39.99\n- Book #137: \"Home Gardening Guide\", priced at $22.99\n- Book #144: \"Journaling Workbook\", priced at $12.99\n- Book #141: \"Mystery Novel: The Last Key\", priced at $14.99\n- Book #134: \"Python Programming Cookbook\", priced at $44.99\n- Book #138: \"Sketching for Beginners\", priced at $18.99\n- Book #133: \"The Art of Mindful Living\", priced at $16.99\n- Book #139: \"The Science of Nutrition\", priced at $29.99\n- Book #140: \"Travel Photography Handbook\", priced at $27.99\n- Book #135: \"World Atlas Illustrated\", priced at $34.99",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 2,
+      "question": "What books do you have?",
+      "answer": "We have a variety of books in stock. Here are some options:\n\n- Board Game Strategy Guide: $19.99\n- Cookbook: Mediterranean Meals: $32.99\n- Fiction Bestseller Collection Box: $39.99\n- Home Gardening Guide: $22.99\n- Journaling Workbook: $12.99\n- Mystery Novel: The Last Key: $14.99\n- Python Programming Cookbook: $44.99\n- Sketching for Beginners: $18.99\n- The Art of Mindful Living: $16.99\n- The Science of Nutrition: $29.99\n- Travel Photography Handbook: $27.99\n- World Atlas Illustrated: $34.99\n\nWould you like to know more about any of these books?",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    }
+  ],
+  "search_products": [
+    {
+      "id": 3,
+      "question": "I'm getting into yoga. What do you carry for it?",
+      "answer": "We have a few yoga-related items:\n- High-Waist Yoga Leggings in Clothing category, priced at $49.99\n- Yoga Mat Premium in Fitness category, priced at $49.99\n\nWould you like more information on these?",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": false,
+      "score": 1.0
+    },
+    {
+      "id": 3,
+      "question": "Any yoga gear in your shop?",
+      "answer": "We have a few yoga items in stock. Here are a couple of them:\n\n- High-Waist Yoga Leggings (Clothing) \u2014 $49.99\n- Yoga Mat Premium (Fitness) \u2014 $49.99\n\nLet me know if you need more information on these.",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": false,
+      "score": 1.0
+    },
+    {
+      "id": 3,
+      "question": "Do you sell anything for yoga?",
+      "answer": "The store sells the following yoga-related products:\n\n- Yoga Mat Premium (Fitness) - Product ID #11\n- High-Waist Yoga Leggings (Clothing) - Product ID #55\n\nWould you like more information on any of these?",
+      "tools_called": [
+        "search_products"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 3,
+      "question": "Do you have yoga products?",
+      "answer": "Yes, we do. Here are some yoga products we have:\n- Yoga Leggings, product #55, $49.99, Clothing category\n- Yoga Mat, product #11, $49.99, Fitness category",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": false,
+      "score": 0.0
+    },
+    {
+      "id": 4,
+      "question": "I need a backpack for a trip. Do you have one?",
+      "answer": "I found a backpack for you. It's the Camping Backpack 60L (Outdoor) and it costs $129.99. Would you like more information on this product?",
+      "tools_called": [
+        "search_products"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 4,
+      "question": "Do you sell backpacks?",
+      "answer": "Yes, we do sell backpacks. Here's one you might be interested in: #19 Camping Backpack 60L (Outdoor) priced at $129.99. Would you like more information on this product?",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": false,
+      "score": 1.0
+    },
+    {
+      "id": 4,
+      "question": "Got any backpacks in stock?",
+      "answer": "I found a backpack for you. It's the Camping Backpack 60L (Outdoor) and it costs $129.99. Would you like more information on this product?",
+      "tools_called": [
+        "search_products"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 4,
+      "question": "Do you carry any backpacks?",
+      "answer": "We do carry a Camping Backpack 60L (Outdoor) in the Backpacks category. Would you like more information on this product?",
+      "tools_called": [
+        "list_categories"
+      ],
+      "tool_hit": false,
+      "score": 0.5
+    }
+  ],
+  "get_product_details": [
+    {
+      "id": 5,
+      "question": "Tell me what product 33 is and its price.",
+      "answer": "Product 33 is a Mechanical Gaming Keyboard, which is in the Electronics category. It costs $129.99. It has Cherry MX Blue switches with RGB backlighting.",
+      "tools_called": [
+        "get_product_details"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 5,
+      "question": "I saw product number 33 on your site. What is it and what does it cost?",
+      "answer": "The product you're looking at is the Mechanical Gaming Keyboard. It is in the Electronics category, and it costs $129.99. It comes with Cherry MX Blue switches and has RGB backlighting.",
+      "tools_called": [
+        "get_product_details"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 5,
+      "question": "What is product #33, and how much does it cost?",
+      "answer": "Product #33 is a Mechanical Gaming Keyboard, which is in the Electronics category. It costs $129.99.",
+      "tools_called": [
+        "get_product_details"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 5,
+      "question": "Can you give me the name and price of item #33?",
+      "answer": "The item #33 is a Mechanical Gaming Keyboard, which falls under the Electronics category. Its price is $129.99. It has Cherry MX Blue switches and comes with RGB backlighting.",
+      "tools_called": [
+        "get_product_details"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 6,
+      "question": "How much is your Vacuum Insulated Tumbler?",
+      "answer": "The Vacuum Insulated Tumbler costs $24.99.",
+      "tools_called": [
+        "get_product_details"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 6,
+      "question": "What's the price of the Vacuum Insulated Tumbler?",
+      "answer": "The Vacuum Insulated Tumbler costs $24.99. It's a 20oz stainless steel tumbler that keeps hot beverages hot for up to 6 hours.",
+      "tools_called": [
+        "get_product_details"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 6,
+      "question": "How much does the Vacuum Insulated Tumbler cost?",
+      "answer": "The Vacuum Insulated Tumbler costs $24.99. It's a 20oz stainless steel tumbler that keeps hot drinks hot for 6 hours.",
+      "tools_called": [
+        "get_product_details"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 6,
+      "question": "Can you tell me the price of the Vacuum Insulated Tumbler?",
+      "answer": "The Vacuum Insulated Tumbler (Product #120) costs $24.99. It's a 20oz stainless steel tumbler that keeps hot drinks hot for up to 6 hours.",
+      "tools_called": [
+        "get_product_details"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    }
+  ],
+  "check_inventory": [
+    {
+      "id": 7,
+      "question": "Check how many of product number 159 are available.",
+      "answer": "The product number 159, a 1000-Piece Jigsaw Puzzle, is in stock with 80 units available.",
+      "tools_called": [
+        "check_inventory"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 7,
+      "question": "How many units of product 159 do you have?",
+      "answer": "We have 80 units of the 1000-Piece Jigsaw Puzzle (Product #159) in stock.",
+      "tools_called": [
+        "check_inventory"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 7,
+      "question": "Is product #159 in stock, and how many are left?",
+      "answer": "Product #159, a 1000-Piece Jigsaw Puzzle, is currently in stock with 80 units available.",
+      "tools_called": [
+        "check_inventory"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 7,
+      "question": "What's the stock count for item #159?",
+      "answer": "The item #159, a 1000-Piece Jigsaw Puzzle, is in stock with 80 units available.",
+      "tools_called": [
+        "check_inventory"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 8,
+      "question": "How many of the Kettlebell 25lb Cast Iron are left?",
+      "answer": "The Kettlebell 25lb Cast Iron is in stock and there are 60 units available.",
+      "tools_called": [
+        "check_inventory"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 8,
+      "question": "What's the stock count for the Kettlebell 25lb Cast Iron?",
+      "answer": "The Kettlebell 25lb Cast Iron is in stock and there are 60 units available.",
+      "tools_called": [
+        "check_inventory"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 8,
+      "question": "Is the Kettlebell 25lb Cast Iron in stock? How many units?",
+      "answer": "The Kettlebell 25lb Cast Iron is in stock and there are 60 units available.",
+      "tools_called": [
+        "check_inventory"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 8,
+      "question": "How many Kettlebell 25lb Cast Iron do you have in stock?",
+      "answer": "We have 60 Kettlebell 25lb Cast Iron in stock.",
+      "tools_called": [
+        "check_inventory"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    }
+  ],
+  "lookup_order": [
+    {
+      "id": 9,
+      "question": "What was in order #57, and what did it cost?",
+      "answer": "Order #57 from Xena Brooks (xena@example.com) included the following items and cost:\n\n- Kids' Science Kit (Qty: 2, $34.99 each) - $69.98 total\n- Wooden Block Building Set (Qty: 1, $29.99) - $29.99\n- Magnetic Drawing Board (Qty: 1, $19.99) - $19.99\n- Plush Stuffed Bear (Qty: 1, $24.99) - $24.99\n\nTotal: $144.95\n\nThe order was delivered on 2026-01-22.",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 9,
+      "question": "Show me the contents and total of order number 57.",
+      "answer": "Here is the order #57:\n\n- **Customer**: Xena Brooks (xena@example.com)\n- **Status**: Delivered\n- **Date**: January 22, 2026\n- **Total**: $144.95\n\n**Items Bought:**\n\n1. **Kids' Science Kit**: 2 Units x $34.99 = $69.98\n2. **Wooden Block Building Set**: 1 Unit x $29.99 = $29.99\n3. **Magnetic Drawing Board**: 1 Unit x $19.99 = $19.99\n4. **Plush Stuffed Bear**: 1 Unit x $24.99 = $24.99\n\n**Grand Total:** $144.95\n\nEverything was delivered on time! If you have any further questions or need more assistance, feel free to ask.",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 9,
+      "question": "Can you list the items and the total for order 57?",
+      "answer": "Here is the summary of your order #57, Xena Brooks:\n\n- **Items:**\n  - Kids' Science Kit (Qty: 2, $34.99)\n  - Wooden Block Building Set (Qty: 1, $29.99)\n  - Magnetic Drawing Board (Qty: 1, $19.99)\n  - Plush Stuffed Bear (Qty: 1, $24.99)\n\n- **Total:** $144.95\n\nThe order was delivered on January 22, 2026.",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 9,
+      "question": "What did I buy in order #57 and how much was it?",
+      "answer": "Your order #57 includes:\n\n- Kids' Science Kit (Qty: 2) - $34.99 each\n- Wooden Block Building Set - $29.99\n- Magnetic Drawing Board - $19.99\n- Plush Stuffed Bear - $24.99\n\nThe total cost of your order is $144.95. The items were delivered on 2026-01-22.",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 10,
+      "question": "Show me the contents and total of order number 68.",
+      "answer": "Here is the information for order #68:\n\n**Customer:** Caleb Morgan (caleb@example.com)\n\n**Status:** Delivered\n\n**Date:** January 28, 2026\n\n**Total:** $294.95\n\n**Items Bought:**\n- Blue Ultraboost Running Shoe: $179.99 (Quantity: 1)\n- Running Shorts: $44.99 (Quantity: 1)\n- Merino Wool Hiking Socks: $24.99 (Quantity: 2)\n- Athletic Compression Socks: $19.99 (Quantity: 1)\n\nIs there anything else you need to know?",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 10,
+      "question": "Can you list the items and the total for order 68?",
+      "answer": "Your order #68 has been processed and is now delivered. Here are the details:\n\n- **Blue Ultraboost Running Shoe**: Quantity: 1, Total: $179.99\n- **Running Shorts**: Quantity: 1, Total: $44.99\n- **Merino Wool Hiking Socks**: Quantity: 2, Total: $24.99\n- **Athletic Compression Socks**: Quantity: 1, Total: $19.99\n\nThe total cost was $294.95.",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 10,
+      "question": "What was in order #68, and what did it cost?",
+      "answer": "Order #68 contains the following items:\n\n- A Blue Ultraboost Running Shoe (1 piece, $179.99)\n- Running Shorts (1 piece, $44.99)\n- Merino Wool Hiking Socks (2 pieces, $24.99 each)\n- Athletic Compression Socks (1 piece, $19.99)\n\nThe total cost for this order was $294.95. The order has already been delivered.",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 10,
+      "question": "What did I buy in order #68 and how much was it?",
+      "answer": "Your order #68 contained the following items:\n\n- Blue Ultraboost Running Shoe: 1 unit, $179.99\n- Running Shorts: 1 unit, $44.99\n- Merino Wool Hiking Socks: 2 units, $24.99 each\n- Athletic Compression Socks: 1 unit, $19.99\n\nThe total amount for your order is $294.95.\n\nThe items were delivered on 2026-01-28.",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    }
+  ],
+  "get_shipping_status": [
+    {
+      "id": 11,
+      "question": "Which carrier has order #66, and what's the tracking number?",
+      "answer": "Order #66 has been delivered by FedEx. The tracking number is FDX-28002-2026. It was shipped on February 13, 2026 and should arrive by February 18, 2026.",
+      "tools_called": [
+        "get_shipping_status"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 11,
+      "question": "How is order number 66 being shipped? I need the tracking number.",
+      "answer": "Order #66 is currently delivered. The carrier is FedEx and the tracking number is FDX-28002-2026. The estimated delivery date is February 18, 2026.",
+      "tools_called": [
+        "get_shipping_status"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 11,
+      "question": "Give me the carrier and tracking number for order #66.",
+      "answer": "The delivery for order #66 was made by FedEx. The tracking number is FDX-28002-2026. It was delivered on February 13, 2026, and it is expected to arrive by February 18, 2026.",
+      "tools_called": [
+        "get_shipping_status"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 11,
+      "question": "Who shipped order 66, and can I get the tracking code?",
+      "answer": "Order #66 was delivered by FedEx. The tracking number is FDX-28002-2026. I don't have the tracking code, but you can check it on the FedEx website using the tracking number.",
+      "tools_called": [
+        "get_shipping_status"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 12,
+      "question": "Who shipped order 5, and can I get the tracking code?",
+      "answer": "Order #5 was shipped. The carrier is FedEx and the tracking number is **FE200820890784922FE**.",
+      "tools_called": [
+        "lookup_order"
+      ],
+      "tool_hit": false,
+      "score": 0.5
+    },
+    {
+      "id": 12,
+      "question": "Give me the carrier and tracking number for order #5.",
+      "answer": "The order #5 has been shipped. The carrier is FedEx and the tracking number is FDX-2002-2026. It's currently out for delivery and should arrive by April 14th.",
+      "tools_called": [
+        "get_shipping_status"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 12,
+      "question": "How is order number 5 being shipped? I need the tracking number.",
+      "answer": "Order #5 has been shipped with FedEx. The tracking number is FDX-2002-2026. It is currently out for delivery and is expected to arrive by April 14th, 2026.",
+      "tools_called": [
+        "get_shipping_status"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 12,
+      "question": "Which carrier has order #5, and what's the tracking number?",
+      "answer": "Order #5 was shipped with FedEx. The tracking number is FDX-2002-2026. It's currently out for delivery and should arrive by April 14th.",
+      "tools_called": [
+        "get_shipping_status"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    }
+  ],
+  "search_orders": [
+    {
+      "id": 13,
+      "question": "Show me all orders for carol@example.com.",
+      "answer": "Here are the orders for Carol White (carol@example.com):\n\n- Order #7, shipped on 2026-04-01, with a total of $179.98.\n- Order #9, cancelled on 2026-03-10, with a total of $199.99.\n- Order #8, delivered on 2026-02-14, with a total of $69.99.",
+      "tools_called": [
+        "search_orders"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 13,
+      "question": "Can you find every order placed by carol@example.com?",
+      "answer": "Here are the orders placed by Carol White (carol@example.com):\n\n- Order #7: shipped \u2014 $179.98 (2026-04-01)\n- Order #9: cancelled \u2014 $199.99 (2026-03-10)\n- Order #8: delivered \u2014 $69.99 (2026-02-14)",
+      "tools_called": [
+        "search_orders"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 13,
+      "question": "What orders does carol@example.com have?",
+      "answer": "Here are Carol's orders:\n\n- Order #7: shipped, total was $179.98, shipped on 2026-04-01\n- Order #9: cancelled, total was $199.99, cancelled on 2026-03-10\n- Order #8: delivered, total was $69.99, delivered on 2026-02-14\n\nWould you like details on any of these orders?",
+      "tools_called": [
+        "search_orders"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 13,
+      "question": "List the order history for carol@example.com.",
+      "answer": "Here is the order history for carol@example.com:\n\n- Order #7, shipped on 2026-04-01, for $179.98.\n- Order #9, cancelled on 2026-03-10, for $199.99.\n- Order #8, delivered on 2026-02-14, for $69.99.",
+      "tools_called": [
+        "search_orders"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 14,
+      "question": "What orders does caleb@example.com have?",
+      "answer": "Here are Caleb's orders:\n\n- Order #69: Shipped on 2026-04-10, for $125.95.\n- Order #68: Delivered on 2026-01-28, for $294.95.\n\nWould you like information on any of these orders?",
+      "tools_called": [
+        "search_orders"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 14,
+      "question": "List the order history for caleb@example.com.",
+      "answer": "Here is the order history for caleb@example.com:\n\n- Order #69, which was shipped on 2026-04-10, for a total of $125.95.\n- Order #68, which was delivered on 2026-01-28, for a total of $294.95.",
+      "tools_called": [
+        "search_orders"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 14,
+      "question": "Can you find every order placed by caleb@example.com?",
+      "answer": "Here are the orders placed by caleb@example.com:\n- Order #69, shipped on 2026-04-10, total $125.95.\n- Order #68, delivered on 2026-01-28, total $294.95.",
+      "tools_called": [
+        "search_orders"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 14,
+      "question": "Show me all orders for caleb@example.com.",
+      "answer": "Here are the orders for caleb@example.com:\n\n- Order #69, shipped on 2026-04-10, for $125.95\n- Order #68, delivered on 2026-01-28, for $294.95",
+      "tools_called": [
+        "search_orders"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    }
+  ],
+  "initiate_return": [
+    {
+      "id": 15,
+      "question": "Can I send back order #13? The running shoes are the wrong size.",
+      "answer": "Your return request for order #13 has been successfully created. The return ID is #12. The reason for the return is that the running shoes are the wrong size. The refund amount is $269.97, and it is currently pending approval. Please wait for further updates.",
+      "tools_called": [
+        "initiate_return"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 15,
+      "question": "I need to return order number 13 because the running shoes are too small.",
+      "answer": "Your return request for order #13 has been successfully created. The return ID is #12. The reason you're returning the order is \"the running shoes are too small\". The refund amount is $269.97 (pending approval). Please wait for the approval from the store.",
+      "tools_called": [
+        "initiate_return"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 15,
+      "question": "I want to return order #13, the running shoes are too small.",
+      "answer": "Your return request for order #13 has been successfully created. The running shoes are too small. The return request number is #12. The refund amount is $269.97 and is currently pending approval.",
+      "tools_called": [
+        "initiate_return"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 15,
+      "question": "Please start a return for order 13. The running shoes don't fit.",
+      "answer": "Your return request for order #13 has been successfully created. The return ID is #12. The reason provided was that the running shoes don't fit. The return is in the requested status and is pending approval with a refund amount of $269.97.",
+      "tools_called": [
+        "initiate_return"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 16,
+      "question": "I need to return order number 18 because the phone chargers are damaged.",
+      "answer": "Your return request for order #18 has been successfully created. The return ID is #12. The refund amount is $79.98 and it is currently pending approval. You will receive the refund once it has been processed.",
+      "tools_called": [
+        "initiate_return"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 16,
+      "question": "I want to return order #18, the phone chargers arrived damaged.",
+      "answer": "Your return request for Order #18 has been successfully created. Here are the details:\n\n- Return ID: Return #12\n- Reason: arrived damaged\n- Status: requested\n- Refund amount: $79.98 (pending approval)\n\nPlease keep the packaging and charging accessories with the returned item, as this will help with the refund process. If you have any further questions, feel free to ask.",
+      "tools_called": [
+        "initiate_return"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 16,
+      "question": "Please start a return for order 18. The phone chargers were broken on arrival.",
+      "answer": "Your return request for Order #18 has been created successfully. The return is under the status of \"requested\" and the refund amount of $79.98 is pending approval.",
+      "tools_called": [
+        "initiate_return"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    },
+    {
+      "id": 16,
+      "question": "Can I send back order #18? The phone chargers came damaged.",
+      "answer": "Your return request for order #18 has been created successfully. The return is being processed and will be handled according to your request. The refund amount of $79.98 is currently pending approval.",
+      "tools_called": [
+        "initiate_return"
+      ],
+      "tool_hit": true,
+      "score": 1.0
+    }
+  ]
+}

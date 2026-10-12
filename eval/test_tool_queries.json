@@ -1,0 +1,211 @@
+[
+  {
+    "id": 1,
+    "tool": "list_categories",
+    "intent": "What the store sells (all categories)",
+    "questions": [
+      "What categories are available in your store?",
+      "What type of products do you sell?",
+      "What kinds of things can I buy here?",
+      "Can you give me an overview of what your shop carries?",
+      "What product departments do you have?"
+    ],
+    "expected_answer": "We sell 10 categories: Accessories, Beauty, Books, Clothing, Electronics, Fitness, Footwear, Home, Outdoor, and Toys & Games.",
+    "must_contain": ["Accessories", "Beauty", "Books", "Clothing", "Electronics", "Fitness", "Footwear", "Home", "Outdoor", "Toys & Games"]
+  },
+  {
+    "id": 2,
+    "tool": "list_categories",
+    "intent": "Products in one category",
+    "questions": [
+      "What books do you have?",
+      "Can you show me your book selection?",
+      "Which books are available in your store?",
+      "I'm looking for something to read. What books do you carry?"
+    ],
+    "expected_answer": "We have 12 books: The Art of Mindful Living, Python Programming Cookbook, World Atlas Illustrated, Fiction Bestseller Collection Box, Home Gardening Guide, Sketching for Beginners, The Science of Nutrition, Travel Photography Handbook, Mystery Novel: The Last Key, Board Game Strategy Guide, Cookbook: Mediterranean Meals, and Journaling Workbook.",
+    "must_contain": ["The Art of Mindful Living", "Python Programming Cookbook", "World Atlas Illustrated", "Fiction Bestseller Collection Box", "Home Gardening Guide", "Sketching for Beginners", "The Science of Nutrition", "Travel Photography Handbook", "Mystery Novel: The Last Key", "Board Game Strategy Guide", "Cookbook: Mediterranean Meals", "Journaling Workbook"]
+  },
+  {
+    "id": 3,
+    "tool": "search_products",
+    "intent": "Find products by keyword",
+    "questions": [
+      "Do you sell anything for yoga?",
+      "Do you have yoga products?",
+      "I'm getting into yoga. What do you carry for it?",
+      "Any yoga gear in your shop?"
+    ],
+    "expected_answer": "Yes, we have the Yoga Mat Premium ($49.99) and the High-Waist Yoga Leggings ($49.99).",
+    "must_contain": ["Yoga Mat Premium", "High-Waist Yoga Leggings"]
+  },
+  {
+    "id": 4,
+    "tool": "search_products",
+    "intent": "Find products by keyword",
+    "questions": [
+      "Do you sell backpacks?",
+      "Do you carry any backpacks?",
+      "I need a backpack for a trip. Do you have one?",
+      "Got any backpacks in stock?"
+    ],
+    "expected_answer": "Yes, we have the Camping Backpack 60L for $129.99.",
+    "must_contain": ["Camping Backpack 60L", "129.99"]
+  },
+  {
+    "id": 5,
+    "tool": "get_product_details",
+    "intent": "Product details by ID",
+    "questions": [
+      "What is product #33, and how much does it cost?",
+      "Tell me what product 33 is and its price.",
+      "Can you give me the name and price of item #33?",
+      "I saw product number 33 on your site. What is it and what does it cost?"
+    ],
+    "expected_answer": "Product #33 is the Mechanical Gaming Keyboard, priced at $129.99.",
+    "must_contain": ["Mechanical Gaming Keyboard", "129.99"]
+  },
+  {
+    "id": 6,
+    "tool": "get_product_details",
+    "intent": "Product price by name (needs search_products first)",
+    "questions": [
+      "How much does the Vacuum Insulated Tumbler cost?",
+      "What's the price of the Vacuum Insulated Tumbler?",
+      "How much is your Vacuum Insulated Tumbler?",
+      "Can you tell me the price of the Vacuum Insulated Tumbler?"
+    ],
+    "expected_answer": "The Vacuum Insulated Tumbler costs $24.99.",
+    "must_contain": ["24.99"]
+  },
+  {
+    "id": 7,
+    "tool": "check_inventory",
+    "intent": "Stock level by ID",
+    "questions": [
+      "Is product #159 in stock, and how many are left?",
+      "How many units of product 159 do you have?",
+      "What's the stock count for item #159?",
+      "Check how many of product number 159 are available."
+    ],
+    "expected_answer": "Yes, product #159 (1000-Piece Jigsaw Puzzle) is in stock with 80 units available.",
+    "must_contain": ["80"]
+  },
+  {
+    "id": 8,
+    "tool": "check_inventory",
+    "intent": "Stock level by name (needs search_products first)",
+    "questions": [
+      "How many Kettlebell 25lb Cast Iron do you have in stock?",
+      "Is the Kettlebell 25lb Cast Iron in stock? How many units?",
+      "What's the stock count for the Kettlebell 25lb Cast Iron?",
+      "How many of the Kettlebell 25lb Cast Iron are left?"
+    ],
+    "expected_answer": "Yes, the Kettlebell 25lb Cast Iron is in stock with 60 units available.",
+    "must_contain": ["60"]
+  },
+  {
+    "id": 9,
+    "tool": "lookup_order",
+    "intent": "One order's items and total",
+    "questions": [
+      "What was in order #57, and what did it cost?",
+      "Can you list the items and the total for order 57?",
+      "What did I buy in order #57 and how much was it?",
+      "Show me the contents and total of order number 57."
+    ],
+    "expected_answer": "Order #57 ($144.95) contained 2 Kids' Science Kits, a Wooden Block Building Set, a Magnetic Drawing Board, and a Plush Stuffed Bear.",
+    "must_contain": ["Kids' Science Kit", "Wooden Block Building Set", "Magnetic Drawing Board", "Plush Stuffed Bear", "144.95"]
+  },
+  {
+    "id": 10,
+    "tool": "lookup_order",
+    "intent": "One order's items and total",
+    "questions": [
+      "What was in order #68, and what did it cost?",
+      "Can you list the items and the total for order 68?",
+      "What did I buy in order #68 and how much was it?",
+      "Show me the contents and total of order number 68."
+    ],
+    "expected_answer": "Order #68 ($294.95) contained a Blue Ultraboost Running Shoe, Running Shorts, 2 pairs of Merino Wool Hiking Socks, and Athletic Compression Socks.",
+    "must_contain": ["Blue Ultraboost Running Shoe", "Running Shorts", "Merino Wool Hiking Socks", "Athletic Compression Socks", "294.95"]
+  },
+  {
+    "id": 11,
+    "tool": "get_shipping_status",
+    "intent": "Carrier and tracking number",
+    "questions": [
+      "Which carrier has order #66, and what's the tracking number?",
+      "Who shipped order 66, and can I get the tracking code?",
+      "Give me the carrier and tracking number for order #66.",
+      "How is order number 66 being shipped? I need the tracking number."
+    ],
+    "expected_answer": "Order #66 was shipped with FedEx, tracking number FDX-28002-2026. It has been delivered.",
+    "must_contain": ["FedEx", "FDX-28002-2026"]
+  },
+  {
+    "id": 12,
+    "tool": "get_shipping_status",
+    "intent": "Carrier and tracking number",
+    "questions": [
+      "Which carrier has order #5, and what's the tracking number?",
+      "Who shipped order 5, and can I get the tracking code?",
+      "Give me the carrier and tracking number for order #5.",
+      "How is order number 5 being shipped? I need the tracking number."
+    ],
+    "expected_answer": "Order #5 is shipping with FedEx, tracking number FDX-2002-2026. It is out for delivery.",
+    "must_contain": ["FedEx", "FDX-2002-2026"]
+  },
+  {
+    "id": 13,
+    "tool": "search_orders",
+    "intent": "All orders for a customer email",
+    "questions": [
+      "Show me all orders for carol@example.com.",
+      "Can you find every order placed by carol@example.com?",
+      "What orders does carol@example.com have?",
+      "List the order history for carol@example.com."
+    ],
+    "expected_answer": "Carol has 3 orders: Order #7 (shipped, $179.98), Order #8 (delivered, $69.99), and Order #9 (cancelled, $199.99).",
+    "must_contain": ["179.98", "69.99", "199.99"]
+  },
+  {
+    "id": 14,
+    "tool": "search_orders",
+    "intent": "All orders for a customer email",
+    "questions": [
+      "Show me all orders for caleb@example.com.",
+      "Can you find every order placed by caleb@example.com?",
+      "What orders does caleb@example.com have?",
+      "List the order history for caleb@example.com."
+    ],
+    "expected_answer": "Caleb has 2 orders: Order #68 (delivered, $294.95) and Order #69 (shipped, $125.95).",
+    "must_contain": ["294.95", "125.95"]
+  },
+  {
+    "id": 15,
+    "tool": "initiate_return",
+    "intent": "Start a return",
+    "questions": [
+      "I want to return order #13, the running shoes are too small.",
+      "Please start a return for order 13. The running shoes don't fit.",
+      "Can I send back order #13? The running shoes are the wrong size.",
+      "I need to return order number 13 because the running shoes are too small."
+    ],
+    "expected_answer": "Return request created for order #13. Reason: running shoes too small. Refund amount: $269.97 (pending approval).",
+    "must_contain": ["269.97"]
+  },
+  {
+    "id": 16,
+    "tool": "initiate_return",
+    "intent": "Start a return",
+    "questions": [
+      "I want to return order #18, the phone chargers arrived damaged.",
+      "Please start a return for order 18. The phone chargers were broken on arrival.",
+      "Can I send back order #18? The phone chargers came damaged.",
+      "I need to return order number 18 because the phone chargers are damaged."
+    ],
+    "expected_answer": "Return request created for order #18. Reason: phone chargers arrived damaged. Refund amount: $79.98 (pending approval).",
+    "must_contain": ["79.98"]
+  }
+]

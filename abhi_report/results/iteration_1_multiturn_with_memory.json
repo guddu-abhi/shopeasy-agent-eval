@@ -1,0 +1,341 @@
+[
+  {
+    "run": 0,
+    "id": 1,
+    "name": "missing email, then given",
+    "turns": [
+      "Can you show me all my orders?",
+      "Sure, it's karen@example.com"
+    ],
+    "replies": [
+      "I don't have any orders for the email 'your@example.com'. Could you provide me with a different email address so I can find your orders?",
+      "Here are your orders for karen@example.com:\n\n- Order #29: pending, total $57.98, shipped on 2026-04-13.\n- Order #28: shipped, total $154.96, shipped on 2026-03-28.\n- Order #27: delivered, total $379.98, delivered on 2025-11-20.\n\nIs there anything specific you would like to know about these orders?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 2,
+    "name": "return without an order number, then given",
+    "turns": [
+      "I want to return something I bought.",
+      "It's order 19, the item arrived broken."
+    ],
+    "replies": [
+      "Sure, I can help with that. Could you please provide me with the order ID and the reason for the return?",
+      "Your return request for order #19, where the item arrived broken, has been successfully created. \n\nYour return request is now pending approval. \n\nThe refund amount of $49.99 is pending our review. You should receive an email notification with further instructions soon. \n\nIf you have any more questions, feel free to ask."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 3,
+    "name": "product follow-up with a pronoun",
+    "turns": [
+      "Is the Fitness Tracker Watch in stock?",
+      "How much does it cost?"
+    ],
+    "replies": [
+      "The Fitness Tracker Watch is in stock and there are currently 70 units available.",
+      "The Fitness Tracker Watch costs $149.99. It's an Electronics product that includes heart rate, sleep, and activity tracking with a 7-day battery life."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 4,
+    "name": "order follow-up",
+    "turns": [
+      "What's in order 28?",
+      "Who is shipping it and what's the tracking number?"
+    ],
+    "replies": [
+      "Here is the summary for your order #28, Karen Nguyen:\n\n- **Status**: Shipped\n- **Date**: 2026-03-28\n- **Total**: $154.96\n\nItems in your order are:\n- 2 High-Waist Yoga Leggings at $49.99 each\n- 1 Seamless Sports Bra at $34.99\n- 1 Athletic Compression Socks at $19.99\n\nPlease let me know if you need any further assistance.",
+      "The order #28 has been shipped and is currently with the carrier UPS. Here's the tracking information:\n\n- **Carrier**: UPS\n- **Tracking Number**: UPS-11002-2026\n- **Status**: In transit\n- **Estimated Delivery**: April 16, 2026\n\nPlease keep this information for your records. If you have any further questions, feel free to ask."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 5,
+    "name": "customer corrects the product",
+    "turns": [
+      "What's the price of the Classic White Sneaker?",
+      "Sorry, I meant the Canvas Slip-On Sneakers."
+    ],
+    "replies": [
+      "The Classic White Sneaker costs $89.99. It's a minimalist white leather sneaker for everyday wear.",
+      "The Canvas Slip-On Sneakers cost $49.99. They are lightweight canvas sneakers with navy color and elastic gore panels."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 0,
+    "id": 6,
+    "name": "no leak between sessions",
+    "turns": [
+      "Show me my orders please."
+    ],
+    "replies": [
+      "I'm sorry, but there are no orders found for the email 'your@example.com'. Could you please provide me with your correct email address?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 1,
+    "name": "missing email, then given",
+    "turns": [
+      "Can you show me all my orders?",
+      "Sure, it's karen@example.com"
+    ],
+    "replies": [
+      "I'm sorry, but there don't seem to be any orders found for the email 'your@example.com'. Could you please provide me with a different email address or check if you have any orders saved under a different account?",
+      "Here are your orders, Karen:\n\n- Order #29 is in the \"pending\" status. The total amount is $57.98, placed on 2026-04-13.\n- Order #28 is in the \"shipped\" status. The total amount is $154.96, shipped on 2026-03-28.\n- Order #27 is in the \"delivered\" status. The total amount is $379.98, delivered on 2025-11-20.\n\nLet me know if you need more information on any of these orders."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 2,
+    "name": "return without an order number, then given",
+    "turns": [
+      "I want to return something I bought.",
+      "It's order 19, the item arrived broken."
+    ],
+    "replies": [
+      "Sure, I can help with that. Could you please provide me with the order ID and the reason for the return?",
+      "Your return request for order #19 has been successfully created. The return request number is #12. The reason for the return is that the item arrived broken, and the refund amount is $49.99 (pending approval). We will process your refund shortly.\n\nIf you have any other issues or need further assistance, feel free to ask."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 3,
+    "name": "product follow-up with a pronoun",
+    "turns": [
+      "Is the Fitness Tracker Watch in stock?",
+      "How much does it cost?"
+    ],
+    "replies": [
+      "The Fitness Tracker Watch is in stock and there are 70 units available.",
+      "The Fitness Tracker Watch costs $149.99. It's in the Electronics category and it can track your heart rate, sleep, and activity with a 7-day battery life."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 4,
+    "name": "order follow-up",
+    "turns": [
+      "What's in order 28?",
+      "Who is shipping it and what's the tracking number?"
+    ],
+    "replies": [
+      "Order #28 from Karen Nguyen (karen@example.com) has been shipped. The items are:\n\n- 2 High-Waist Yoga Leggings for $49.99 each, totaling $99.98\n- 1 Seamless Sports Bra for $34.99\n- 1 Athletic Compression Socks for $19.99\n\nThe total order amount is $154.96. Please let me know if you need any more information.",
+      "For Order #28, the delivery is being handled by UPS. The tracking number is UPS-11002-2026. The package is currently in transit and is expected to arrive by April 16th, 2026."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 5,
+    "name": "customer corrects the product",
+    "turns": [
+      "What's the price of the Classic White Sneaker?",
+      "Sorry, I meant the Canvas Slip-On Sneakers."
+    ],
+    "replies": [
+      "The Classic White Sneaker costs $89.99. It's a minimalist white leather sneaker suitable for everyday wear.",
+      "The Canvas Slip-On Sneakers cost $49.99. They are lightweight canvas sneakers with navy color and elastic gore panels."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 1,
+    "id": 6,
+    "name": "no leak between sessions",
+    "turns": [
+      "Show me my orders please."
+    ],
+    "replies": [
+      "I don't have any orders for the email 'your@example.com'. Could you please provide me with a different email address?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 2,
+    "id": 1,
+    "name": "missing email, then given",
+    "turns": [
+      "Can you show me all my orders?",
+      "Sure, it's karen@example.com"
+    ],
+    "replies": [
+      "It seems like there are no orders found for the email 'your_email@example.com'. Could you please provide your correct email address so I can assist you better?",
+      "Here are your orders so far:\n\n- Order #29, placed on 2026-04-13, is currently in the 'pending' status and the total amount is $57.98.\n- Order #28, shipped on 2026-03-28, was placed earlier and the total amount is $154.96.\n- Order #27, delivered on 2025-11-20, was shipped on 2025-11-20, with the total amount of $379.98.\n\nIs there anything else I can help you with?"
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 2,
+    "id": 2,
+    "name": "return without an order number, then given",
+    "turns": [
+      "I want to return something I bought.",
+      "It's order 19, the item arrived broken."
+    ],
+    "replies": [
+      "Sure, I can help with that. Could you please provide me with the order ID so I can start the return process?",
+      "Your return request for order #19 has been successfully created. The return number is #12 and the reason for the return is that the item arrived broken. The refund amount of $49.99 is pending approval. Once it's processed, you'll receive the refund. If you need any further assistance, feel free to ask."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true,
+      "db_state": true
+    },
+    "pass": true
+  },
+  {
+    "run": 2,
+    "id": 3,
+    "name": "product follow-up with a pronoun",
+    "turns": [
+      "Is the Fitness Tracker Watch in stock?",
+      "How much does it cost?"
+    ],
+    "replies": [
+      "The Fitness Tracker Watch is in stock and there are currently 70 units available.",
+      "The Fitness Tracker Watch costs $149.99. It's in the Electronics category and it can track your heart rate, sleep, and activity with a 7-day battery life."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 2,
+    "id": 4,
+    "name": "order follow-up",
+    "turns": [
+      "What's in order 28?",
+      "Who is shipping it and what's the tracking number?"
+    ],
+    "replies": [
+      "Order #28 for Karen Nguyen (karen@example.com) has been processed and shipped. Here are the details:\n\n- **Items Purchased:**\n  - High-Waist Yoga Leggings: 2 pieces at $49.99 each\n  - Seamless Sports Bra: 1 piece at $34.99\n  - Athletic Compression Socks: 1 piece at $19.99\n\nThe total amount for the order is $154.96. The order was shipped.",
+      "The order #28 for Karen Nguyen (karen@example.com) has been shipped and is currently being processed by UPS. Here are the details:\n\n- **Carrier:** UPS\n- **Tracking Number:** UPS-11002-2026\n- **Current Status:** In Transit\n- **Shipped:** 2026-03-29\n- **Estimated Delivery:** 2026-04-16\n\nThe order will be delivered between these dates. If you have any further questions or need assistance, feel free to ask."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 2,
+    "id": 5,
+    "name": "customer corrects the product",
+    "turns": [
+      "What's the price of the Classic White Sneaker?",
+      "Sorry, I meant the Canvas Slip-On Sneakers."
+    ],
+    "replies": [
+      "The Classic White Sneaker costs $89.99. It's a minimalist white leather sneaker suitable for everyday wear.",
+      "The Canvas Slip-On Sneakers cost $49.99. They are lightweight canvas sneakers in navy with elastic gore panels."
+    ],
+    "checks": {
+      "contains": true,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": true
+  },
+  {
+    "run": 2,
+    "id": 6,
+    "name": "no leak between sessions",
+    "turns": [
+      "Show me my orders please."
+    ],
+    "replies": [
+      "Here are your orders, Grace Kim:\n\n- Order #18: Shipped on 2026-04-03, total cost was $79.98.\n- Order #19: Delivered on 2026-03-15, total cost was $49.99.\n- Order #75: Delivered on 2026-03-01, total cost was $61.96.\n- Order #17: Delivered on 2026-01-30, total cost was $129.97."
+    ],
+    "checks": {
+      "contains": false,
+      "not_contains": true,
+      "grounded": true
+    },
+    "pass": false
+  }
+]
